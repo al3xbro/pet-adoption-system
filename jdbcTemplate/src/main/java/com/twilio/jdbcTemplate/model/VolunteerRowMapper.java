@@ -9,9 +9,9 @@ public class VolunteerRowMapper implements RowMapper<Volunteer> {
    @Override
    public Volunteer mapRow(ResultSet rs, int rowNum) throws SQLException {
        return new Volunteer(
-               rs.getInt("id"),
-               rs.getString("name"),
-               rs.getInt("hoursWorked")
+               rs.getInt("volunteer_id"),
+               rs.getString("volunteer_name"),
+               rs.getInt("hours_worked")
        );
    }
 }

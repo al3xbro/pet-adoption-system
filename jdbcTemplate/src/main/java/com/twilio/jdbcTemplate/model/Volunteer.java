@@ -6,15 +6,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Volunteer {
 
-   @JsonProperty("id")
+   @JsonProperty("volunteer_id")
    private int volunteer_id;
 
   // @NotBlank
-   @JsonProperty("name")
+   @JsonProperty("volunteer_name")
    private String name;
 
    //@NotBlank
-   @JsonProperty("hoursWorked")
+   @JsonProperty("hours_worked")
    private int hoursWorked;
 
 public Volunteer(int volunteer_id, String name, int hoursWorked) {

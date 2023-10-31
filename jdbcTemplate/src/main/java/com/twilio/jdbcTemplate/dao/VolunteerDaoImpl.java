@@ -23,7 +23,7 @@ public class VolunteerDaoImpl implements VolunteerDao{
    @Override
    public int addVolunteer(Volunteer volunteer) {
     String sql= """
-        INSERT into volunteer(volunteer_id,name,hoursWorked)
+        INSERT INTO Volunteer(volunteer_id,volunteer_name,hours_worked)
         VALUES (?,?,?);
             """;
         return jdbcTemplate.update(sql, volunteer.getID(), volunteer.getName(), volunteer.getHoursWorked());
@@ -41,7 +41,7 @@ public class VolunteerDaoImpl implements VolunteerDao{
     @Override
     public List<Volunteer> findAll() {
         String sql = """
-           SELECT volunteer_id, name, hoursWorked
+           SELECT volunteer_id, volunteer_name, hours_worked
            FROM Volunteer
            LIMIT 100;
            """;
@@ -52,7 +52,7 @@ public class VolunteerDaoImpl implements VolunteerDao{
     @Override
     public Optional<Volunteer> findById(int id) {
         String sql= """
-                SELECT volunteer_id, name, hoursWorked
+                SELECT volunteer_id, volunteer_name, hours_worked
                 FROM Volunteer
                 WHERE id = ?;
                 """;
@@ -63,7 +63,7 @@ public class VolunteerDaoImpl implements VolunteerDao{
     public int updateVolunteer(int id, Volunteer volunteer) {
         String sql = """
                 UPDATE Volunteer
-                SET name = ?, hoursWorked = ?
+                SET volunteer_name = ?, hours_worked = ?
                 WHERE id = ?
                 """;
             return jdbcTemplate.update(sql, volunteer.getName(), volunteer.getHoursWorked(), id);

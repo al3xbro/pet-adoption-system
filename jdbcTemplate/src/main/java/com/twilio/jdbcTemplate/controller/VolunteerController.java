@@ -11,38 +11,40 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/Volunteer")
+@RequestMapping("api/volunteer")
 public class VolunteerController {
+
+   @Autowired 
    private final VolunteerDao volunteerDao;
 
-   @Autowired
-   public VolunteerController(VolunteerDao volunteerDao) {
+    @Autowired
+    public VolunteerController(VolunteerDao volunteerDao) {
        this.volunteerDao = volunteerDao;
-   }
+    }
 
-   @PostMapping("/add")
-public void addVolunteer(@RequestBody Volunteer volunteer){
-   volunteerDao.addVolunteer(volunteer);
-}
+    @PostMapping("/add")
+    public void addVolunteer(@RequestBody Volunteer volunteer){
+        volunteerDao.addVolunteer(volunteer);
+    }
 
-@GetMapping("/all")
-public List<Volunteer> findAll(){
-   return volunteerDao.findAll();
-}
+    @GetMapping("/all")
+    public List<Volunteer> findAll(){
+        return volunteerDao.findAll();
+    }
 
-@GetMapping("/{id}")
-public Volunteer findById(@PathVariable("id") int id){
-   return volunteerDao.findById(id)
+    @GetMapping("/{id}")
+    public Volunteer findById(@PathVariable("volunteer_id") int id){
+        return volunteerDao.findById(id)
            .orElseThrow(() -> new RuntimeException("volunteer not found"));
-}
+    }
 
-@PutMapping("/update/{id}")
-public int updateVolunteer(@Valid @RequestBody Volunteer volunteer, @PathVariable("id") int id){
-   return volunteerDao.updateVolunteer(id,volunteer);
-}
+    @PutMapping("/update/{id}")
+    public int updateVolunteer(@Valid @RequestBody Volunteer volunteer, @PathVariable("id") int id){
+        return volunteerDao.updateVolunteer(id,volunteer);
+    }
 
-@GetMapping("/delete/{id}")
-public void deleteVolunteer(@PathVariable("id") int id){
-    volunteerDao.deleteVolunteer(id);
-}
+    @GetMapping("/delete/{id}")
+    public void deleteVolunteer(@PathVariable("volunteer_id") int id){
+        volunteerDao.deleteVolunteer(id);
+    }
 }
