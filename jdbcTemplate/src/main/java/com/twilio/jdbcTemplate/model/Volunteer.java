@@ -10,7 +10,7 @@ public class Volunteer {
    private int volunteer_id;
 
   // @NotBlank
-   @JsonProperty("Name")
+   @JsonProperty("name")
    private String name;
 
    //@NotBlank
