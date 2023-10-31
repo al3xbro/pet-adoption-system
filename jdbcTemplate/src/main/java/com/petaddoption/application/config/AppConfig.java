@@ -1,4 +1,4 @@
-package com.twilio.jdbcTemplate.config;
+package com.petaddoption.application.config;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
@@ -7,8 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
 public class AppConfig {
-   @Bean
-   public JdbcTemplate jdbcTemplate(HikariDataSource hikariDataSource){
-       return new JdbcTemplate(hikariDataSource);
-   }
+    @Bean
+    public JdbcTemplate jdbcTemplate(HikariDataSource hikariDataSource) {
+        return new JdbcTemplate(hikariDataSource);
+    }
 }
