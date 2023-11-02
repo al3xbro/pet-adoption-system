@@ -1,4 +1,4 @@
-package com.petaddoption.application.model;
+package com.team8.petadoptionserver.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;

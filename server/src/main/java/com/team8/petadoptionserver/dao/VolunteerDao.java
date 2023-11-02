@@ -1,9 +1,9 @@
-package com.petaddoption.application.dao;
+package com.team8.petadoptionserver.dao;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.petaddoption.application.model.Volunteer;
+import com.team8.petadoptionserver.model.Volunteer;
 
 public interface VolunteerDao {
     List<Volunteer> findAll();

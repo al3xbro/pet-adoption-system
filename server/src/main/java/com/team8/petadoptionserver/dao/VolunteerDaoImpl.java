@@ -1,4 +1,4 @@
-package com.petaddoption.application.dao;
+package com.team8.petadoptionserver.dao;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.petaddoption.application.model.Volunteer;
-import com.petaddoption.application.model.VolunteerRowMapper;
+import com.team8.petadoptionserver.model.Volunteer;
+import com.team8.petadoptionserver.model.VolunteerRowMapper;
 
 @Repository
 public class VolunteerDaoImpl implements VolunteerDao {

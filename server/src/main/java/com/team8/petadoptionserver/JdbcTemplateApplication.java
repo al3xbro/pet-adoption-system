@@ -1,4 +1,4 @@
-package com.petaddoption.application;
+package com.team8.petadoptionserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

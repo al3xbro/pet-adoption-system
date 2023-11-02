@@ -1,4 +1,4 @@
-package com.petaddoption.application.model;
+package com.team8.petadoptionserver.model;
 
 import org.springframework.jdbc.core.RowMapper;
 

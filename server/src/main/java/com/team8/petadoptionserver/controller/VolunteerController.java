@@ -1,12 +1,12 @@
-package com.petaddoption.application.controller;
+package com.team8.petadoptionserver.controller;
 
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.petaddoption.application.dao.VolunteerDao;
-import com.petaddoption.application.model.Volunteer;
+import com.team8.petadoptionserver.dao.VolunteerDao;
+import com.team8.petadoptionserver.model.Volunteer;
 
 import java.util.List;
 
