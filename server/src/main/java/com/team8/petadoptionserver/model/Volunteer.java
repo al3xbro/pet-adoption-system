@@ -6,53 +6,66 @@ import jakarta.validation.constraints.NotBlank;
 public class Volunteer {
     @NotBlank
     @JsonProperty("volunteer_id")
-    private int volunteer_id;
+    private int volunteerId;
 
     @NotBlank
-    @JsonProperty("volunteer_name")
-    private String name;
+    @JsonProperty("volunteer_first_name")
+    private String volunteerFirstName;
 
     @NotBlank
-    @JsonProperty("hours_worked")
-    private int hoursWorked;
+    @JsonProperty("volunteer_last_name")
+    private String volunteerLastName;
 
-    public Volunteer(int volunteer_id, String name, int hoursWorked) {
-        this.volunteer_id = volunteer_id;
-        this.name = name;
-        this.hoursWorked = hoursWorked;
+    @NotBlank
+    @JsonProperty("volunteer_hours_worked")
+    private int volunteerHoursWorked;
+
+    public Volunteer(int volunteerId, String volunteerFirstName, String volunteerLastName, int volunteerHoursWorked) {
+        this.volunteerId = volunteerId;
+        this.volunteerFirstName = volunteerFirstName;
+        this.volunteerLastName = volunteerLastName;
+        this.volunteerHoursWorked = volunteerHoursWorked;
     }
 
-    public int getID() {
-        return volunteer_id;
+    public int getId() {
+        return volunteerId;
     }
 
-    public void setID(int volunteer_id) {
-        this.volunteer_id = volunteer_id;
+    public void setId(int volunteerId) {
+        this.volunteerId = volunteerId;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return volunteerFirstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String volunteerFirstName) {
+        this.volunteerFirstName = volunteerFirstName;
+    }
+
+    public String getLastName() {
+        return volunteerLastName;
+    }
+
+    public void setLastName(String volunteerLastName) {
+        this.volunteerLastName = volunteerLastName;
     }
 
     public int getHoursWorked() {
-        return hoursWorked;
+        return volunteerHoursWorked;
     }
 
-    public void setHoursWorked(int hoursWorked) {
-        this.hoursWorked = hoursWorked;
+    public void setHoursWorked(int volunteerHoursWorked) {
+        this.volunteerHoursWorked = volunteerHoursWorked;
     }
 
     @Override
     public String toString() {
         return "Volunteer{" +
-                "ID='" + volunteer_id + '\'' +
-                ", name='" + name + '\'' +
-                ", hoursWorked='" + hoursWorked + '\'' +
-                '}';
+                "volunteerId='" + volunteerId + "', " +
+                "volunteerFirstName='" + volunteerFirstName + "', " +
+                "volunteerLastName='" + volunteerLastName + "', " +
+                "volunteerHoursWorked='" + volunteerHoursWorked + "'" +
+                "}";
     }
-
 }

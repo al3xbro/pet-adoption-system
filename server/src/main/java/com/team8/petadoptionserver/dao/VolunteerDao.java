@@ -17,4 +17,6 @@ public interface VolunteerDao {
     int updateVolunteer(int id, Volunteer volunteer);
 
     List<Volunteer> findByName(String name);
+
+    List<Volunteer> findByHoursWorked(int hoursWorked);
 }
