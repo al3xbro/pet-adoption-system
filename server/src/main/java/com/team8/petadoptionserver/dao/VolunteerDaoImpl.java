@@ -73,6 +73,16 @@ public class VolunteerDaoImpl implements VolunteerDao {
     }
 
     @Override
+    public List<Volunteer> findByHoursWorked(int hoursWorked) {
+        String sql = """
+                SELECT *
+                FROM Volunteer
+                WHERE hours_worked=?;
+                """;
+        return jdbcTemplate.query(sql, new VolunteerRowMapper(), hoursWorked);
+    }
+
+    @Override
     public int updateVolunteer(int id, Volunteer volunteer) {
         String sql = """
                 UPDATE Volunteer
