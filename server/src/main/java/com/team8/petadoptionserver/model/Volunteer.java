@@ -1,18 +1,10 @@
 package com.team8.petadoptionserver.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Volunteer {
-    @JsonProperty("volunteer_id")
+
     private int volunteerId;
-
-    @JsonProperty("volunteer_first_name")
     private String volunteerFirstName;
-
-    @JsonProperty("volunteer_last_name")
     private String volunteerLastName;
-
-    @JsonProperty("volunteer_hours_worked")
     private int volunteerHoursWorked;
 
     public Volunteer(int volunteerId, String volunteerFirstName, String volunteerLastName, int volunteerHoursWorked) {

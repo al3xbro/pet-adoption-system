@@ -3,18 +3,17 @@ package com.team8.petadoptionserver.dao;
 import java.util.List;
 import java.util.Optional;
 
-import org.flywaydb.core.internal.jdbc.JdbcTemplate;
-import org.flywaydb.core.internal.jdbc.RowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.team8.petadoptionserver.model.Volunteer;
 import com.team8.petadoptionserver.model.VolunteerRowMapper;
 
-@Component
+@Repository
 public class VolunteerDAO implements VolunteerDAOInt {
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     @Autowired
     public VolunteerDAO(JdbcTemplate jdbcTemplate) {
@@ -33,26 +32,35 @@ public class VolunteerDAO implements VolunteerDAOInt {
 
     @Override
     public Optional<Volunteer> findById(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        String sql = """
+                SELECT *
+                FROM volunteer
+                WHERE volunteer_id=?;
+                """;
+        return jdbcTemplate.query(sql, new VolunteerRowMapper(), id).stream().findFirst();
     }
 
     @Override
     public List<Volunteer> findByName(String name) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByName'");
-    }
-
-    @Override
-    public List<Volunteer> findByHoursWorked(int hoursWorked) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByHoursWorked'");
+        String sql = """
+                SELECT *
+                FROM volunteer
+                WHERE CONCAT(volunteer_first_name, ' ', volunteer_last_name) LIKE %?%;
+                """;
+        return jdbcTemplate.query(sql, new VolunteerRowMapper(), name);
     }
 
     @Override
     public int addVolunteer(Volunteer volunteer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addVolunteer'");
+        String sql = """
+                INSERT INTO volunteer (
+                    volunteer_first_name,
+                    volunteer_last_name,
+                    volunteer_hours_worked
+                )
+                VALUES (?,?,?);
+                """;
+        return jdbcTemplate.update(sql, volunteer.getFirstName(), volunteer.getLastName(), volunteer.getHoursWorked());
     }
 
     @Override

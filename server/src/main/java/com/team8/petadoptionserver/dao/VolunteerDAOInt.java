@@ -18,8 +18,6 @@ public interface VolunteerDAOInt {
 
     List<Volunteer> findByName(String name);
 
-    List<Volunteer> findByHoursWorked(int hoursWorked);
-
     // post
 
     int addVolunteer(Volunteer volunteer);
