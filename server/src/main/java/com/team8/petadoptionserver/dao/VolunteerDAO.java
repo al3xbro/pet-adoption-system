@@ -3,14 +3,32 @@ package com.team8.petadoptionserver.dao;
 import java.util.List;
 import java.util.Optional;
 
-import com.team8.petadoptionserver.model.Volunteer;
+import org.flywaydb.core.internal.jdbc.JdbcTemplate;
+import org.flywaydb.core.internal.jdbc.RowMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import com.team8.petadoptionserver.model.Volunteer;
+import com.team8.petadoptionserver.model.VolunteerRowMapper;
+
+@Component
 public class VolunteerDAO implements VolunteerDAOInt {
+
+    private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public VolunteerDAO(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public List<Volunteer> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        String sql = """
+                SELECT *
+                FROM volunteer
+                LIMIT 100;
+                """;
+        return jdbcTemplate.query(sql, new VolunteerRowMapper());
     }
 
     @Override
