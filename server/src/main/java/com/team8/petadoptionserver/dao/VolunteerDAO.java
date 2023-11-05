@@ -31,23 +31,33 @@ public class VolunteerDAO implements VolunteerDAOInt {
     }
 
     @Override
-    public Optional<Volunteer> findById(int id) {
+    public Optional<Volunteer> findById(int volunteerId) {
         String sql = """
                 SELECT *
                 FROM volunteer
                 WHERE volunteer_id=?;
                 """;
-        return jdbcTemplate.query(sql, new VolunteerRowMapper(), id).stream().findFirst();
+        return jdbcTemplate.query(sql, new VolunteerRowMapper(), volunteerId).stream().findFirst();
     }
 
     @Override
-    public List<Volunteer> findByName(String name) {
+    public List<Volunteer> findByName(String volunteerName) {
         String sql = """
                 SELECT *
                 FROM volunteer
                 WHERE CONCAT(volunteer_first_name, ' ', volunteer_last_name) LIKE %?%;
                 """;
-        return jdbcTemplate.query(sql, new VolunteerRowMapper(), name);
+        return jdbcTemplate.query(sql, new VolunteerRowMapper(), volunteerName);
+    }
+
+    @Override
+    public List<Volunteer> findByShelter(int shelterId) {
+        String sql = """
+                SELECT *
+                FROM volunteer
+                WHERE volunteer_shelter_id=?;
+                """;
+        return jdbcTemplate.query(sql, new VolunteerRowMapper(), shelterId);
     }
 
     @Override
@@ -64,15 +74,26 @@ public class VolunteerDAO implements VolunteerDAOInt {
     }
 
     @Override
-    public int updateVolunteer(int id, Volunteer volunteer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateVolunteer'");
+    public int updateVolunteer(int volunteerId, Volunteer volunteer) {
+        String sql = """
+                UPDATE volunteer
+                SET
+                    volunteer_first_name=?,
+                    volunteer_last_name=?,
+                    volunteer_hours_worked=?
+                WHERE volunteer_id=?;
+                """;
+        return jdbcTemplate.update(sql, volunteer.getFirstName(), volunteer.getLastName(), volunteer.getHoursWorked(),
+                volunteerId);
     }
 
     @Override
-    public int deleteVolunteer(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteVolunteer'");
+    public int deleteVolunteer(int volunteerId) {
+        String sql = """
+                DELETE FROM volunteer
+                WHERE volunteer_id=?;
+                """;
+        return jdbcTemplate.update(sql, volunteerId);
     }
 
 }

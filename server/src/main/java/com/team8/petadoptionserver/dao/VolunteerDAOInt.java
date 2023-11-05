@@ -14,9 +14,11 @@ public interface VolunteerDAOInt {
 
     List<Volunteer> findAll();
 
-    Optional<Volunteer> findById(int id);
+    Optional<Volunteer> findById(int volunteerId);
 
-    List<Volunteer> findByName(String name);
+    List<Volunteer> findByName(String volunteerName);
+
+    List<Volunteer> findByShelter(int shelterId);
 
     // post
 
@@ -24,10 +26,10 @@ public interface VolunteerDAOInt {
 
     // put
 
-    int updateVolunteer(int id, Volunteer volunteer);
+    int updateVolunteer(int volunteerId, Volunteer volunteer);
 
     // delete
 
-    int deleteVolunteer(int id);
+    int deleteVolunteer(int volunteerId);
 
 }

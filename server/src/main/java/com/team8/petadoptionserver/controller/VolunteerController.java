@@ -25,7 +25,7 @@ public class VolunteerController {
         this.volunteerDAO = volunteerDAO;
     }
 
-    @GetMapping("")
+    @GetMapping({ "", "/" })
     public List<Volunteer> getAll() {
         return volunteerDAO.findAll();
     }
@@ -35,7 +35,7 @@ public class VolunteerController {
         return volunteerDAO.findById(id);
     }
 
-    @PostMapping("")
+    @PostMapping({ "", "/" })
     public int addVolunteer(@RequestBody Volunteer volunteer) {
         return volunteerDAO.addVolunteer(volunteer);
     }
