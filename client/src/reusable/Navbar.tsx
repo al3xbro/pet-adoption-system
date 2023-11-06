@@ -1,10 +1,11 @@
 import { TfiViewGrid, TfiAlignJustify, TfiSearch } from "react-icons/tfi";
 
 type ContentView = "card" | "list"
-type Account = "shelter" | "employee" | "customer"
+type AccountType = "shelter" | "employee" | "customer"
 
 type Props = {
-    accountType: Account,
+    accountType: AccountType,
+    setAccountType: React.Dispatch<React.SetStateAction<AccountType>>,
 
     contentView: ContentView,
     setContentView: React.Dispatch<React.SetStateAction<ContentView>>,
@@ -22,7 +23,7 @@ function toggleContentView(contentView: ContentView, setContentView: React.Dispa
     }
 }
 
-export default function Navbar({ accountType, contentView, setContentView, searchText, setSearchText, searchPlaceholderText }: Props) {
+export default function Navbar({ accountType, setAccountType, contentView, setContentView, searchText, setSearchText, searchPlaceholderText }: Props) {
 
     return (
         <>

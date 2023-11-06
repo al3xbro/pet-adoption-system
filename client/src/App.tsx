@@ -1,18 +1,21 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useState } from 'react'
 import CustomerView from './pages/CustomerView'
-import EmployeeView from './pages/EmployeeView'
+import VolunteerView from './pages/VolunteerView'
 import ShelterView from './pages/ShelterView'
 
+type AccountType = 'customer' | 'employee' | 'shelter'
+
 export default function App() {
+
+    // this is here just for the demo. make a login after
+    const [accountType, setAccountType] = useState<AccountType>('shelter')
+
     return (
         <>
-            <BrowserRouter>
-                <Routes>
-                    <Route path='/customer' element={<CustomerView />} />
-                    <Route path='/employee' element={<EmployeeView />} />
-                    <Route path='/shelter' element={<ShelterView />} />
-                </Routes>
-            </BrowserRouter>
+            {accountType == 'customer' ? <CustomerView /> : null}
+            {accountType == 'employee' ? <VolunteerView /> : null}
+            {accountType == 'shelter' ? <ShelterView setAccountType={setAccountType} /> : null}
         </>
     )
 }
