@@ -8,8 +8,8 @@ type ContentView = "card" | "list"
 type PaneView = "pets" | "volunteers" | "supplies" | "profile" | "none"
 
 // throttle function to prevent spamming the server with requests
-const throttleFunction = throttle((searchText) => {
-    console.log("searching for " + searchText)
+const throttleRequest = throttle((searchText) => {
+    // TODO: axios query here with suerystring
 }, 500)
 
 export default function ShelterView() {
@@ -19,8 +19,9 @@ export default function ShelterView() {
 
     const [searchText, setSearchText] = useState<string>("")
 
+    // call throttle function on searchText change
     useEffect(() => {
-        throttleFunction(searchText)
+        throttleRequest(searchText)
     }, [searchText])
 
     return (

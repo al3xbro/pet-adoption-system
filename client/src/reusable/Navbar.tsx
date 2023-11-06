@@ -1,5 +1,4 @@
-import listIcon from "../assets/list_icon.svg"
-import tileIcon from "../assets/tile_icon.svg"
+import { TfiViewGrid, TfiAlignJustify, TfiSearch } from "react-icons/tfi";
 
 type ContentView = "card" | "list"
 type Account = "shelter" | "employee" | "customer"
@@ -28,8 +27,16 @@ export default function Navbar({ accountType, contentView, setContentView, searc
     return (
         <>
             <div className="h-16 w-full flex p-4 justify-between border-b-2 border-b-black">
-                <img className="p-1 rounded-md sm:hover:bg-gray-200 active:bg-gray-200 transition duration-200 ease-in-out" src={contentView == "list" ? listIcon : tileIcon} onClick={() => toggleContentView(contentView, setContentView)} />
-                <input type="text" className="p-2 rounded-md max-w-xl bg-gray-200" placeholder={searchPlaceholderText} onChange={e => { setSearchText(e.target.value) }} value={searchText} />
+                <div className="flex p-[0.375rem] rounded-md sm:hover:bg-gray-200 active:bg-gray-200 transition duration-200 ease-in-out aspect-square" onClick={() => toggleContentView(contentView, setContentView)}>
+                    {contentView == "list" ?
+                        <TfiAlignJustify className="w-full h-full" /> :
+                        <TfiViewGrid className="w-full h-full" />
+                    }
+                </div>
+                <div className="flex w-1/2 min-w-[10rem] max-w-[30rem] gap-2 bg-gray-200 px-3 py-2 rounded-md ">
+                    <TfiSearch className="opacity-75 h-full aspect-square" />
+                    <input type="text" className="w-full outline-none bg-transparent" placeholder={searchPlaceholderText} onChange={e => { setSearchText(e.target.value) }} value={searchText} />
+                </div>
                 <div>switch context</div>
             </div>
         </>
