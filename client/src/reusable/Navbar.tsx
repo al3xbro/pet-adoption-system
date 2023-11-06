@@ -34,7 +34,7 @@ export default function Navbar({ accountType, contentView, setContentView, searc
                     }
                 </div>
                 <div className="flex w-1/2 min-w-[10rem] max-w-[30rem] gap-2 bg-gray-200 px-3 py-2 rounded-md ">
-                    <TfiSearch className="opacity-75 h-full aspect-square" />
+                    <TfiSearch className="opacity-60 h-full aspect-square" />
                     <input type="text" className="w-full outline-none bg-transparent" placeholder={searchPlaceholderText} onChange={e => { setSearchText(e.target.value) }} value={searchText} />
                 </div>
                 <div>switch context</div>
