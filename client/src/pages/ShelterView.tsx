@@ -13,7 +13,7 @@ type Props = {
 
 // throttle function to prevent spamming the server with requests
 const throttleRequest = throttle((searchText) => {
-    // TODO: axios query here with suerystring
+    // TODO: add query params to link
 }, 500)
 
 export default function ShelterView({ setAccountType }: Props) {
@@ -31,13 +31,36 @@ export default function ShelterView({ setAccountType }: Props) {
             <BrowserRouter>
                 <Sidebar accountType={"shelter"} />
                 <div className="h-full w-full">
-                    <Navbar accountType={"shelter"} setAccountType={setAccountType} contentView={contentView} setContentView={setContentView} searchText={searchText} setSearchText={setSearchText} searchPlaceholderText={"Search"} />
                     <Routes>
-                        <Route path="/" element={<Content />} />
-                        <Route path="/profile" element={<div>profile</div> /* profile here, profile component responsible for fetching */} />
-                        <Route path="/volunteers" element={<Content />} />
-                        <Route path="/supplies" element={<Content />} />
-                        <Route path="/profile" element={<Content />} />
+                        <Route path="/" element={
+                            <>
+                                <Navbar accountType={"shelter"} setAccountType={setAccountType} paneView="none" contentView={contentView} setContentView={setContentView} searchText={searchText} setSearchText={setSearchText} />
+                            </>
+                        } />
+                        <Route path="/profile" element={
+                            <>
+                                <Navbar accountType={"shelter"} setAccountType={setAccountType} paneView="profile" contentView={contentView} setContentView={setContentView} searchText={searchText} setSearchText={setSearchText} />
+                                <div>profile here</div>
+                            </>
+                        } />
+                        <Route path="/supplies" element={
+                            <>
+                                <Navbar accountType={"shelter"} setAccountType={setAccountType} paneView="supplies" contentView={contentView} setContentView={setContentView} searchText={searchText} setSearchText={setSearchText} />
+                                <Content />
+                            </>
+                        } />
+                        <Route path="/volunteers" element={
+                            <>
+                                <Navbar accountType={"shelter"} setAccountType={setAccountType} paneView="volunteers" contentView={contentView} setContentView={setContentView} searchText={searchText} setSearchText={setSearchText} />
+                                <Content />
+                            </>
+                        } />
+                        <Route path="/pets" element={
+                            <>
+                                <Navbar accountType={"shelter"} setAccountType={setAccountType} paneView="pets" contentView={contentView} setContentView={setContentView} searchText={searchText} setSearchText={setSearchText} />
+                                <Content />
+                            </>
+                        } />
                     </Routes>
                 </div>
             </BrowserRouter>

@@ -73,6 +73,8 @@ const dummyCards = [
     },
 ]
 
+// get query params and fetches data here
+
 export default function Content({ }: Props) {
     return (
         <>

@@ -3,17 +3,19 @@ import { TfiViewGrid, TfiAlignJustify, TfiSearch, TfiAngleDown } from "react-ico
 
 type ContentView = "card" | "list"
 type AccountType = "shelter" | "volunteer" | "customer"
+type paneView = "profile" | "supplies" | "volunteers" | "pets" | "none"
 
 type Props = {
     accountType: AccountType,
     setAccountType: React.Dispatch<React.SetStateAction<AccountType>>,
+
+    paneView: paneView,
 
     contentView: ContentView,
     setContentView: React.Dispatch<React.SetStateAction<ContentView>>,
 
     searchText: string,
     setSearchText: React.Dispatch<React.SetStateAction<string>>,
-    searchPlaceholderText: string,
 }
 
 function toggleContentView(contentView: ContentView, setContentView: React.Dispatch<React.SetStateAction<ContentView>>) {
@@ -24,7 +26,7 @@ function toggleContentView(contentView: ContentView, setContentView: React.Dispa
     }
 }
 
-export default function Navbar({ accountType, setAccountType, contentView, setContentView, searchText, setSearchText, searchPlaceholderText }: Props) {
+export default function Navbar({ accountType, setAccountType, paneView, contentView, setContentView, searchText, setSearchText }: Props) {
 
     const [dropdownState, setDropdownState] = useState(false)
     const dropdownRef = useRef(null);
@@ -39,7 +41,6 @@ export default function Navbar({ accountType, setAccountType, contentView, setCo
     useEffect(() => {
         // add a click event listener to the document
         function exitMenus() {
-            console.log("outside")
             if (dropdownRef.current) {
                 setDropdownState(false);
             }
@@ -54,16 +55,21 @@ export default function Navbar({ accountType, setAccountType, contentView, setCo
     return (
         <>
             <div className="h-16 w-full flex p-4 justify-between border-b-2 border-b-black">
-                <div className="flex p-[0.375rem] rounded-md sm:hover:bg-gray-200 active:bg-gray-200 transition duration-200 ease-in-out aspect-square" onClick={() => toggleContentView(contentView, setContentView)}>
-                    {contentView == "list" ?
-                        <TfiAlignJustify className="w-full h-full" />
-                        : <TfiViewGrid className="w-full h-full" />
-                    }
-                </div>
-                <div className="flex w-1/2 min-w-[10rem] max-w-[30rem] gap-2 bg-gray-200 px-3 py-2 rounded-md">
-                    <TfiSearch className="opacity-60 h-full aspect-square" />
-                    <input type="text" className="w-full outline-none bg-transparent" placeholder={searchPlaceholderText} onChange={e => { setSearchText(e.target.value) }} value={searchText} />
-                </div>
+                {paneView != "none" && paneView != "profile" ?
+                    <>
+                        <div className="flex p-[0.375rem] rounded-md sm:hover:bg-gray-200 active:bg-gray-200 transition duration-200 ease-in-out aspect-square" onClick={() => toggleContentView(contentView, setContentView)}>
+                            {contentView == "list" ?
+                                <TfiAlignJustify className="w-full h-full" />
+                                : <TfiViewGrid className="w-full h-full" />
+                            }
+                        </div>
+                        <div className="flex w-1/2 min-w-[10rem] max-w-[30rem] gap-2 bg-gray-200 px-3 py-2 rounded-md">
+                            <TfiSearch className="opacity-60 h-full aspect-square" />
+                            <input type="text" className="w-full outline-none bg-transparent" placeholder={`Search ${paneView}`} onChange={e => { setSearchText(e.target.value) }} value={searchText} />
+                        </div>
+                    </>
+                    : <div />
+                }
                 <div className={`flex items-center gap-1 px-[0.375rem] rounded-md sm:hover:bg-gray-200 ${dropdownState ? "bg-gray-200" : ""} transition duration-200 ease-in-out`} onClick={() => toggleDropdown(dropdownState)}>
                     {accountType == "customer" ? "Customer" : null}
                     {accountType == "volunteer" ? "Volunteer" : null}
