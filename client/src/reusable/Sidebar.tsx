@@ -1,4 +1,4 @@
-type AccountType = 'customer' | 'employee' | 'shelter'
+type AccountType = 'customer' | 'volunteer' | 'shelter'
 type Props = {
     accountType: AccountType
 }

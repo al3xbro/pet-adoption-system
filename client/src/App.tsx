@@ -1,10 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
 import CustomerView from './pages/CustomerView'
 import VolunteerView from './pages/VolunteerView'
 import ShelterView from './pages/ShelterView'
 
-type AccountType = 'customer' | 'employee' | 'shelter'
+type AccountType = 'customer' | 'volunteer' | 'shelter'
 
 export default function App() {
 
@@ -14,7 +13,7 @@ export default function App() {
     return (
         <>
             {accountType == 'customer' ? <CustomerView /> : null}
-            {accountType == 'employee' ? <VolunteerView /> : null}
+            {accountType == 'volunteer' ? <VolunteerView /> : null}
             {accountType == 'shelter' ? <ShelterView setAccountType={setAccountType} /> : null}
         </>
     )

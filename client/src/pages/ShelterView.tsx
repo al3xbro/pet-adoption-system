@@ -5,7 +5,7 @@ import Content from "../reusable/Content/Content"
 import throttle from "lodash.throttle"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
-type AccountType = 'customer' | 'employee' | 'shelter'
+type AccountType = 'customer' | 'volunteer' | 'shelter'
 type ContentView = "card" | "list"
 type Props = {
     setAccountType: React.Dispatch<React.SetStateAction<AccountType>>
