@@ -56,8 +56,8 @@ export default function Navbar({ accountType, setAccountType, contentView, setCo
             <div className="h-16 w-full flex p-4 justify-between border-b-2 border-b-black">
                 <div className="flex p-[0.375rem] rounded-md sm:hover:bg-gray-200 active:bg-gray-200 transition duration-200 ease-in-out aspect-square" onClick={() => toggleContentView(contentView, setContentView)}>
                     {contentView == "list" ?
-                        <TfiAlignJustify className="w-full h-full" /> :
-                        <TfiViewGrid className="w-full h-full" />
+                        <TfiAlignJustify className="w-full h-full" />
+                        : <TfiViewGrid className="w-full h-full" />
                     }
                 </div>
                 <div className="flex w-1/2 min-w-[10rem] max-w-[30rem] gap-2 bg-gray-200 px-3 py-2 rounded-md">
@@ -72,7 +72,7 @@ export default function Navbar({ accountType, setAccountType, contentView, setCo
                 </div>
             </div>
             {dropdownState ?
-                <div ref={dropdownRef} className="absolute top-14 right-4 overflow-hidden bg-gray-200 border rounded-md shadow-xl transition duration-200 ease-in-out">
+                <div ref={dropdownRef} className="absolute top-14 right-4 overflow-hidden bg-gray-200 border rounded-md shadow-xl">
                     <div className="py-1 px-2 hover:bg-gray-300" onClick={() => setAccountType("customer")}>Customer</div>
                     <div className="py-1 px-2 hover:bg-gray-300 border-y-[1px] border-gray-400" onClick={() => setAccountType("volunteer")}>Volunteer</div>
                     <div className="py-1 px-2 hover:bg-gray-300" onClick={() => setAccountType("shelter")}>Shelter</div>
