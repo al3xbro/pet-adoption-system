@@ -26,7 +26,7 @@ export default function Main() {
         <>
             <BrowserRouter>
                 <Sidebar />
-                <div className="h-full w-full">
+                <div className="h-full w-full sm:w-[calc(100%-18rem)]">
                     <Routes>
                         <Route path="/" element={
                             <>
@@ -42,19 +42,19 @@ export default function Main() {
                         <Route path="/supplies" element={
                             <>
                                 <Navbar paneView="supplies" contentView={contentView} setContentView={setContentView} searchText={searchText} setSearchText={setSearchText} />
-                                <Content />
+                                <Content contentView={contentView} />
                             </>
                         } />
                         <Route path="/volunteers" element={
                             <>
                                 <Navbar paneView="volunteers" contentView={contentView} setContentView={setContentView} searchText={searchText} setSearchText={setSearchText} />
-                                <Content />
+                                <Content contentView={contentView} />
                             </>
                         } />
                         <Route path="/pets" element={
                             <>
                                 <Navbar paneView="pets" contentView={contentView} setContentView={setContentView} searchText={searchText} setSearchText={setSearchText} />
-                                <Content />
+                                <Content contentView={contentView} />
                             </>
                         } />
                         <Route path="/*" element={

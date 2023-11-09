@@ -1,4 +1,11 @@
 import Card from "./Card"
+import ListElement from "./ListElement"
+
+type ContentView = "card" | "list"
+
+type Props = {
+    contentView: ContentView,
+}
 
 const dummyCards = [
     {
@@ -45,7 +52,7 @@ const dummyCards = [
     },
     {
         id: 7,
-        name: "Mittens",
+        name: "Mittensasdfasfaasdfasdf",
         summary: "(F 10mo)",
         desc: "Mittens is a sweet, playful kitten who loves to cuddle and play with her toys. She is very friendly and loves to be petted. She is a little shy at first, but warms up quickly. She is good with other cats and dogs.",
         img: "https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg",
@@ -82,12 +89,17 @@ const dummyCards = [
 
 // get query params and fetches data here
 
-export default function Content() {
+export default function Content({ contentView }: Props) {
     return (
         <>
-            <div style={{ gridTemplateColumns: "repeat(auto-fill, minmax(20rem, 1fr))", gridAutoRows: "13rem" }} className="grid gap-8 h-[calc(100%-4rem)] sm:overflow-auto overflow-y-scroll p-6">
-                {dummyCards.map(card => <Card key={card.id} name={card.name} summary={card.summary} desc={card.desc} img={card.img} />)}
-            </div>
+            {contentView == "card" ?
+                <div style={{ gridTemplateColumns: "repeat(auto-fill, minmax(20rem, 1fr))", gridAutoRows: "13rem" }} className="grid gap-8 h-[calc(100%-4rem)] overflow-y-auto p-6">
+                    {dummyCards.map(card => <Card key={card.id} name={card.name} summary={card.summary} desc={card.desc} img={card.img} />)}
+                </div>
+                : <div className="h-[calc(100%-4rem)] overflow-y-auto px-6">
+                    {dummyCards.map(card => <ListElement key={card.id} name={card.name} summary={card.summary} desc={card.desc} img={card.img} />)}
+                </div>
+            }
         </>
     )
 }

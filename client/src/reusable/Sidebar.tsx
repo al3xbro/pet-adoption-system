@@ -8,7 +8,7 @@ export default function Sidebar() {
 
     return (
         <>
-            <div className="hidden sm:block sm:h-full sm:w-72 sm:border-r-2 sm:border-r-black sm:border-t-0 border-t-2 border-t-black" >{accountType} sidebar</div>
+            <div className="hidden sm:block h-full w-72 sm:border-r-2 sm:border-r-black sm:border-t-0 border-t-2 border-t-black" >{accountType} sidebar</div>
         </>
     )
 }

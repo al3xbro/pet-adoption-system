@@ -3,10 +3,10 @@ import { TfiViewGrid, TfiAlignJustify, TfiSearch, TfiAngleDown } from "react-ico
 import { AccountContext } from "../App";
 
 type ContentView = "card" | "list"
-type paneView = "profile" | "supplies" | "volunteers" | "pets" | "none"
+type PaneView = "profile" | "supplies" | "volunteers" | "pets" | "none"
 
 type Props = {
-    paneView: paneView,
+    paneView: PaneView,
 
     contentView: ContentView,
     setContentView: React.Dispatch<React.SetStateAction<ContentView>>,
