@@ -1,14 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { TfiViewGrid, TfiAlignJustify, TfiSearch, TfiAngleDown } from "react-icons/tfi";
+import { AccountContext } from "../App";
 
 type ContentView = "card" | "list"
-type AccountType = "shelter" | "volunteer" | "customer"
 type paneView = "profile" | "supplies" | "volunteers" | "pets" | "none"
 
 type Props = {
-    accountType: AccountType,
-    setAccountType: React.Dispatch<React.SetStateAction<AccountType>>,
-
     paneView: paneView,
 
     contentView: ContentView,
@@ -26,8 +23,10 @@ function toggleContentView(contentView: ContentView, setContentView: React.Dispa
     }
 }
 
-export default function Navbar({ accountType, setAccountType, paneView, contentView, setContentView, searchText, setSearchText }: Props) {
+export default function Navbar({ paneView, contentView, setContentView, searchText, setSearchText }: Props) {
 
+    // @ts-ignore
+    const { accountType, setAccountType } = useContext(AccountContext)
     const [dropdownState, setDropdownState] = useState(false)
     const dropdownRef = useRef(null);
 

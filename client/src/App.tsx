@@ -1,20 +1,25 @@
-import { useState } from 'react'
-import CustomerView from './pages/CustomerView'
-import VolunteerView from './pages/VolunteerView'
-import ShelterView from './pages/ShelterView'
+import Main from './pages/Main'
+import { createContext, useState } from 'react'
 
-type AccountType = 'customer' | 'volunteer' | 'shelter'
+type Account = "shelter" | "volunteer" | "customer"
+type AccountContextType = {
+    accountType: Account,
+    setAccountType: React.Dispatch<React.SetStateAction<Account>>
+}
 
-export default function App() {
+const AccountContext = createContext<AccountContextType | undefined>(undefined)
 
-    // this is here just for the demo. make a login after
-    const [accountType, setAccountType] = useState<AccountType>('shelter')
+function App() {
+
+    const [accountType, setAccountType] = useState<Account>("shelter")
 
     return (
         <>
-            {accountType == 'customer' ? <CustomerView /> : null}
-            {accountType == 'volunteer' ? <VolunteerView /> : null}
-            {accountType == 'shelter' ? <ShelterView setAccountType={setAccountType} /> : null}
+            <AccountContext.Provider value={{ accountType, setAccountType }}>
+                <Main />
+            </AccountContext.Provider>
         </>
     )
 }
+
+export { AccountContext, App }
