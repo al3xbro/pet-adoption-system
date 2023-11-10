@@ -43,7 +43,7 @@ public class ShelterDAO implements ShelterDAOInt {
         String sql = """
                 SELECT *
                 FROM shelter
-                WHERE shelter_name LIKE %?%;
+                WHERE shelter_name LIKE `%?%`;
                 """;
         return jdbcTemplate.query(sql, new ShelterRowMapper(), shelterName);
     }
