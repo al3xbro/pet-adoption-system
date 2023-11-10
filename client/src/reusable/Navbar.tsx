@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { TfiViewGrid, TfiAlignJustify, TfiSearch, TfiAngleDown } from "react-icons/tfi";
 import { AccountContext } from "../App";
+import throttle from "lodash.throttle";
 
 type ContentView = "card" | "list"
 type PaneView = "profile" | "supplies" | "volunteers" | "pets" | "none"
@@ -10,9 +11,6 @@ type Props = {
 
     contentView: ContentView,
     setContentView: React.Dispatch<React.SetStateAction<ContentView>>,
-
-    searchText: string,
-    setSearchText: React.Dispatch<React.SetStateAction<string>>,
 }
 
 function toggleContentView(contentView: ContentView, setContentView: React.Dispatch<React.SetStateAction<ContentView>>) {
@@ -23,19 +21,33 @@ function toggleContentView(contentView: ContentView, setContentView: React.Dispa
     }
 }
 
-export default function Navbar({ paneView, contentView, setContentView, searchText, setSearchText }: Props) {
+function toggleDropdown(dropdownState: boolean, setDropdownState: React.Dispatch<React.SetStateAction<boolean>>) {
+    // need settimeout to prevent dropdown from closing immediately
+    setTimeout(() => {
+        setDropdownState(!dropdownState)
+    });
+}
 
-    // @ts-ignore
-    const { accountType, setAccountType } = useContext(AccountContext)
+const throttleQuery = throttle((searchText: string) => {
+    const currentURL = window.location.href
+    const newURL = new URL(currentURL)
+    newURL.searchParams.set("q", searchText)
+    history.pushState({}, "", newURL.toString())
+}, 500)
+
+export default function Navbar({ paneView, contentView, setContentView }: Props) {
+
+    const accountContext = useContext(AccountContext)
+    const accountType = accountContext?.accountType
+    const setAccountType = accountContext?.setAccountType || (() => { })
+
     const [dropdownState, setDropdownState] = useState(false)
+    const [searchText, setSearchText] = useState("")
     const dropdownRef = useRef(null);
 
-    function toggleDropdown(dropdownState: boolean) {
-        // need settimeout to prevent dropdown from closing immediately
-        setTimeout(() => {
-            setDropdownState(!dropdownState)
-        });
-    }
+    useEffect(() => {
+        throttleQuery(searchText)
+    }, [searchText])
 
     useEffect(() => {
         // add a click event listener to the document
@@ -44,7 +56,6 @@ export default function Navbar({ paneView, contentView, setContentView, searchTe
                 setDropdownState(false);
             }
         }
-
         document.addEventListener('click', exitMenus);
         return () => {
             document.removeEventListener('click', exitMenus);
@@ -69,7 +80,7 @@ export default function Navbar({ paneView, contentView, setContentView, searchTe
                     </>
                     : <div />
                 }
-                <div className={`flex items-center gap-1 px-[0.375rem] rounded-md sm:hover:bg-gray-200 ${dropdownState ? "bg-gray-200" : ""} transition duration-200 ease-in-out`} onClick={() => toggleDropdown(dropdownState)}>
+                <div className={`flex items-center gap-1 px-[0.375rem] rounded-md sm:hover:bg-gray-200 ${dropdownState ? "bg-gray-200" : ""} transition duration-200 ease-in-out`} onClick={() => toggleDropdown(dropdownState, setDropdownState)}>
                     {accountType == "customer" ? "Customer" : null}
                     {accountType == "volunteer" ? "Volunteer" : null}
                     {accountType == "shelter" ? "Shelter" : null}

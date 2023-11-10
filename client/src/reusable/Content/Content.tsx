@@ -2,9 +2,11 @@ import Card from "./Card"
 import ListElement from "./ListElement"
 
 type ContentView = "card" | "list"
+type PaneView = "supplies" | "volunteers" | "pets"
 
 type Props = {
     contentView: ContentView,
+    paneView: PaneView
 }
 
 const dummyCards = [
@@ -52,7 +54,7 @@ const dummyCards = [
     },
     {
         id: 7,
-        name: "Mittensasdfasfaasdfasdf",
+        name: "Mittensasdfasfaasdfasasdfasdfasfddf",
         summary: "(F 10mo)",
         desc: "Mittens is a sweet, playful kitten who loves to cuddle and play with her toys. She is very friendly and loves to be petted. She is a little shy at first, but warms up quickly. She is good with other cats and dogs.",
         img: "https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg",
@@ -89,7 +91,7 @@ const dummyCards = [
 
 // get query params and fetches data here
 
-export default function Content({ contentView }: Props) {
+export default function Content({ contentView, paneView }: Props) {
     return (
         <>
             {contentView == "card" ?
