@@ -1,5 +1,6 @@
 import Main from './pages/Main'
 import { createContext, useState } from 'react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 type Account = "shelter" | "volunteer" | "customer"
 type AccountContextType = {
@@ -8,6 +9,7 @@ type AccountContextType = {
 }
 
 const AccountContext = createContext<AccountContextType | undefined>(undefined)
+const queryClient = new QueryClient()
 
 function App() {
 
@@ -15,9 +17,11 @@ function App() {
 
     return (
         <>
-            <AccountContext.Provider value={{ accountType, setAccountType }}>
-                <Main />
-            </AccountContext.Provider>
+            <QueryClientProvider client={queryClient}>
+                <AccountContext.Provider value={{ accountType, setAccountType }}>
+                    <Main />
+                </AccountContext.Provider>
+            </QueryClientProvider>
         </>
     )
 }
