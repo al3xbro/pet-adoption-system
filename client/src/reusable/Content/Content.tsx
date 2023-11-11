@@ -8,7 +8,9 @@ type PaneView = "supplies" | "volunteers" | "pets"
 type DataEntry = {
     id: number,
     name: string,
-    summary: string,
+    sex: "M" | "F"
+    age: number,
+    breed: string,
     desc: string,
     img: string,
 }
@@ -21,15 +23,19 @@ type Props = {
 const defaultCards = [
     {
         id: 1,
-        name: "Fluffy",
-        summary: "M (2yrs) - 50lbs - Pitbull",
+        name: "Fluffyfasdfasdfasdfasdfadfasd",
+        sex: "M",
+        age: 24,
+        breed: "Poodle",
         desc: "Fluffy is a happy dog who loves to play fetch",
         img: "https://ih1.redbubble.net/image.2653429219.4814/st,small,507x507-pad,600x600,f8f8f8.webp"
     },
     {
         id: 2,
-        name: "Mittens",
-        summary: "F (1yr) - 10lbs - Tabby",
+        name: "Mittensfasdfasdafasdfasdfas",
+        sex: "F",
+        age: 36,
+        breed: "Tabby",
         desc: "Mittens is a happy cat who loves to play with yarn",
         img: "https://ih1.redbubble.net/image.2653429219.4814/st,small,507x507-pad,600x600,f8f8f8.webp"
 
@@ -37,7 +43,9 @@ const defaultCards = [
     {
         id: 3,
         name: "Bubbles",
-        summary: "fish",
+        sex: "M",
+        age: 12,
+        breed: "Goldfish",
         desc: "Bubbles is a happy fish who loves to swim",
         img: "https://ih1.redbubble.net/image.2653429219.4814/st,small,507x507-pad,600x600,f8f8f8.webp"
 
@@ -45,7 +53,9 @@ const defaultCards = [
     {
         id: 4,
         name: "Croc",
-        summary: "F (3yrs) - 200lbs - Crocalius",
+        sex: "F",
+        age: 36,
+        breed: "Crocodile",
         desc: "Croc is a happy crocodile who loves to eat",
         img: "https://ih1.redbubble.net/image.2653429219.4814/st,small,507x507-pad,600x600,f8f8f8.webp"
 
@@ -69,10 +79,10 @@ export default function Content({ contentView, paneView }: Props) {
         <>
             {contentView == "card" ?
                 <div style={{ gridTemplateColumns: "repeat(auto-fill, minmax(20rem, 1fr))", gridAutoRows: "13rem" }} className="grid gap-8 h-[calc(100%-4rem)] overflow-y-auto p-6">
-                    {data.map((element) => <Card key={element.id} name={element.name} summary={element.summary} desc={element.desc} img={element.img} />)}
+                    {data.map((element) => <Card key={element.id} name={element.name} summary={`${element.sex} - ${element.age > 12 ? `${Math.floor(element.age / 12)}yr` : `${element.age}mo`} - ${element.breed}`} desc={element.desc} img={element.img} />)}
                 </div>
                 : <div className="h-[calc(100%-4rem)] overflow-y-auto px-6">
-                    {data.map((element) => <ListElement key={element.id} name={element.name} summary={element.summary} desc={element.desc} img={element.img} />)}
+                    {data.map((element) => <ListElement key={element.id} name={element.name} summary={`${element.sex} - ${element.age > 12 ? `${Math.floor(element.age / 12)}yr` : `${element.age}mo`} - ${element.breed}`} desc={element.desc} img={element.img} />)}
                 </div>
             }
         </>
