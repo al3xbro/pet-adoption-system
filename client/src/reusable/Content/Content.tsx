@@ -18,7 +18,39 @@ type Props = {
     paneView: PaneView
 }
 
-// get query params and fetches data here
+const defaultCards = [
+    {
+        id: 1,
+        name: "Fluffy",
+        summary: "M (2yrs) - 50lbs - Pitbull",
+        desc: "Fluffy is a happy dog who loves to play fetch",
+        img: "https://ih1.redbubble.net/image.2653429219.4814/st,small,507x507-pad,600x600,f8f8f8.webp"
+    },
+    {
+        id: 2,
+        name: "Mittens",
+        summary: "F (1yr) - 10lbs - Tabby",
+        desc: "Mittens is a happy cat who loves to play with yarn",
+        img: "https://ih1.redbubble.net/image.2653429219.4814/st,small,507x507-pad,600x600,f8f8f8.webp"
+
+    },
+    {
+        id: 3,
+        name: "Bubbles",
+        summary: "fish",
+        desc: "Bubbles is a happy fish who loves to swim",
+        img: "https://ih1.redbubble.net/image.2653429219.4814/st,small,507x507-pad,600x600,f8f8f8.webp"
+
+    },
+    {
+        id: 4,
+        name: "Croc",
+        summary: "F (3yrs) - 200lbs - Crocalius",
+        desc: "Croc is a happy crocodile who loves to eat",
+        img: "https://ih1.redbubble.net/image.2653429219.4814/st,small,507x507-pad,600x600,f8f8f8.webp"
+
+    }
+]
 
 export default function Content({ contentView, paneView }: Props) {
 
@@ -31,7 +63,7 @@ export default function Content({ contentView, paneView }: Props) {
             return axios.get(`http://localhost:5000/${paneView}/name/${name}`)
         }
     })
-    const data: Array<DataEntry> = query.data?.data
+    const data: Array<DataEntry> = query.data?.data ?? defaultCards
 
     return (
         <>
