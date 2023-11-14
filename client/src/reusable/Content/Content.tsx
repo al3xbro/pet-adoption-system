@@ -81,7 +81,7 @@ export default function Content({ contentView, paneView }: Props) {
                 <div style={{ gridTemplateColumns: "repeat(auto-fill, minmax(20rem, 1fr))", gridAutoRows: "13rem" }} className="grid gap-8 h-[calc(100%-4rem)] overflow-y-auto p-6">
                     {data.map((element) => <Card key={element.id} name={element.name} summary={`${element.sex} - ${element.age > 12 ? `${Math.floor(element.age / 12)}yr` : `${element.age}mo`} - ${element.breed}`} desc={element.desc} img={element.img} />)}
                 </div>
-                : <div className="h-[calc(100%-4rem)] overflow-y-auto px-6">
+                : <div className="h-[calc(100%-4rem)] overflow-y-auto px-6 py-2">
                     {data.map((element) => <ListElement key={element.id} name={element.name} summary={`${element.sex} - ${element.age > 12 ? `${Math.floor(element.age / 12)}yr` : `${element.age}mo`} - ${element.breed}`} desc={element.desc} img={element.img} />)}
                 </div>
             }
