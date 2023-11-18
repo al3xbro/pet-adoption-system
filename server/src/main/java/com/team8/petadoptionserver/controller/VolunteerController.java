@@ -40,4 +40,9 @@ public class VolunteerController {
         return volunteerDAO.addVolunteer(volunteer);
     }
 
+    @GetMapping("/delet/{id}")
+    public int deleteVolunteer(@PathVariable("id") int id) {
+        return volunteerDAO.deleteVolunteer(id);
+    }
+
 }

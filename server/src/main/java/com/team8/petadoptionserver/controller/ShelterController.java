@@ -36,12 +36,12 @@ public class ShelterController {
     }
 
     @PutMapping("/update/{id}")
-    public int updateShelter(RequestBody Shelter shelter, @PathVariable("id") int id) {
+    public int updateShelter(@PathVariable("id") int id, @RequestBody Shelter shelter) {
         return shelterDAO.updateShelter(id, shelter);
     }
 
     @GetMapping("/delet/{id}")
     public int deleteShelter(@PathVariable("id") int id) {
-        shelterDAO.deleteShelter(id);
+        return shelterDAO.deleteShelter(id);
     }
 }

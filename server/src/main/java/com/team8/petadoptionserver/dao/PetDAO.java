@@ -28,7 +28,7 @@ public class PetDAO implements PetDAOInt {
                 LIMIT 100
                 """;
         
-        return jdbcTemplate.query(sql, new PetRowMapper);
+        return jdbcTemplate.query(sql, new PetRowMapper());
    }
 
     @Override
@@ -39,7 +39,7 @@ public class PetDAO implements PetDAOInt {
                 WHERE pet_id=?;
                 """;
 
-        return jdbcTemplate.query(sql, new PetRowMapper(), PetId).stream().findFirst();
+        return jdbcTemplate.query(sql, new PetRowMapper(), petId).stream().findFirst();
     }
 
     @Override
@@ -93,7 +93,7 @@ public class PetDAO implements PetDAOInt {
             VALUES (?, ?, ?, ?);
             """;
 
-        return jdbcTemplate.update(sql, pet.getPetName(), pet.getAge(), pet.getSpecies(), pet.getBreed());
+        return jdbcTemplate.update(sql, pet.getName(), pet.getAge(), pet.getSpecies(), pet.getBreed());
     }
 
     @Override
@@ -104,7 +104,7 @@ public class PetDAO implements PetDAOInt {
             WHERE pet_id = ?;
             """;
 
-        return jdbcTemplate.update(sql, pet.getPetName(), pet.getAge(), pet.getSpecies(), pet.getBreed(), pet.getPetId());
+        return jdbcTemplate.update(sql, pet.getName(), pet.getAge(), pet.getSpecies(), pet.getBreed(), pet.getId());
     }
 
     @Override
