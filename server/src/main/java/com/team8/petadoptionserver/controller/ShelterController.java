@@ -31,7 +31,7 @@ public class ShelterController {
     }
 
     @GetMapping("/id/{id}")
-    public Optional<Shelter> findById(@PathVariable ("id") int id) {
+    public Optional<Shelter> findById(@PathVariable("id") int id) {
         return shelterDAO.findById(id);
     }
 
