@@ -25,7 +25,7 @@ public class PetDAO implements PetDAOInt {
         String sql = """
                 SELECT * 
                 FROM pet
-                LIMIT 100
+                LIMIT 100;
                 """;
         
         return jdbcTemplate.query(sql, new PetRowMapper());
@@ -56,10 +56,10 @@ public class PetDAO implements PetDAOInt {
     @Override
     public List<Pet> findByAge(int petAge) {
         String sql = """
-            SELECT *
-            FROM pet
-            WHERE pet_age = ?;
-            """;
+                SELECT * 
+                FROM pet 
+                WHERE pet_age = ?;
+                """;
 
         return jdbcTemplate.query(sql, new PetRowMapper(), petAge);
     }
@@ -67,10 +67,10 @@ public class PetDAO implements PetDAOInt {
     @Override
     public List<Pet> findBySpecies(String petSpecies) {
         String sql = """
-            SELECT *
-            FROM pet
-            WHERE pet_species = ?;
-            """;
+                SELECT * 
+                FROM pet 
+                WHERE pet_species = ?;
+                """;
 
         return jdbcTemplate.query(sql, new PetRowMapper(), petSpecies);
     }
@@ -78,10 +78,10 @@ public class PetDAO implements PetDAOInt {
     @Override
     public List<Pet> findByBreed(String petBreed) {
         String sql = """
-            SELECT *
-            FROM pet
-            WHERE pet_breed = ?;
-            """;
+                SELECT * 
+                FROM pet 
+                WHERE pet_breed = ?;
+                """;
 
         return jdbcTemplate.query(sql, new PetRowMapper(), petBreed);
     }
@@ -89,9 +89,9 @@ public class PetDAO implements PetDAOInt {
     @Override
     public int addPet(Pet pet) {
         String sql = """
-            INSERT INTO pet (pet_name, pet_age, pet_species, pet_breed)
-            VALUES (?, ?, ?, ?);
-            """;
+                INSERT INTO pet (pet_name, pet_age, pet_species, pet_breed)
+                VALUES (?, ?, ?, ?);
+                """;
 
         return jdbcTemplate.update(sql, pet.getName(), pet.getAge(), pet.getSpecies(), pet.getBreed());
     }
@@ -99,10 +99,10 @@ public class PetDAO implements PetDAOInt {
     @Override
     public int updatePet(int petId, Pet pet) {
         String sql = """
-            UPDATE pet
-            SET pet_name = ?, pet_age = ?, pet_species = ?, pet_breed = ?
-            WHERE pet_id = ?;
-            """;
+                UPDATE pet 
+                SET pet_name = ?, pet_age = ?, pet_species = ?, pet_breed = ? 
+                WHERE pet_id = ?;
+                """;
 
         return jdbcTemplate.update(sql, pet.getName(), pet.getAge(), pet.getSpecies(), pet.getBreed(), pet.getId());
     }
@@ -110,9 +110,9 @@ public class PetDAO implements PetDAOInt {
     @Override
     public int deletePet(int petId) {
         String sql = """
-            DELETE FROM pet
-            WHERE pet_id = ?;
-            """;
+                DELETE FROM pet 
+                WHERE pet_id = ?;
+                """;
 
         return jdbcTemplate.update(sql, petId);
     }
