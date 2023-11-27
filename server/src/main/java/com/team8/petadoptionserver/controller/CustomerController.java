@@ -21,7 +21,7 @@ public class CustomerController {
     }
 
     @GetMapping("/id/{id}")
-    public Optional<Customer findById(@PathVariable("id") int id) {
+    public Optional<Customer> findById(@PathVariable("id") int id) {
         return customerDAO.findById(id);
     }
 
@@ -41,7 +41,7 @@ public class CustomerController {
     }
 
     @PostMapping({ "", "/" })
-    public int addCustomer(@Requestbody Customer customer) {
+    public int addCustomer(@RequestBody Customer customer) {
         return customerDAO.addCustomer(customer);
     }
 
