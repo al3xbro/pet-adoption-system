@@ -20,7 +20,7 @@ public class CustomerDAO implements CustomerDAOInt {
     }
 
     @Override
-    public List<Customer> findAll(){
+    public List<Customer> findAll() {
         String sql = """
                 SELECT *
                 FROM customer
@@ -81,7 +81,8 @@ public class CustomerDAO implements CustomerDAOInt {
                 VALUES (?, ?, ?, ?);
                 """;
 
-        return jdbcTemplate.update(sql, customer.getFirstName(), customer.getLastName(), customer.getAddress(), customer.getPhone());
+        return jdbcTemplate.update(sql, customer.getFirstName(), customer.getLastName(), customer.getAddress(),
+                customer.getPhone());
     }
 
     @Override
@@ -92,7 +93,8 @@ public class CustomerDAO implements CustomerDAOInt {
                 WHERE customer_id = ?;
                 """;
 
-        return jdbcTemplate.update(sql, customer.getFirstName(), customer.getLastName(), customer.getAddress(), customer.getPhone(), customer.getID());
+        return jdbcTemplate.update(sql, customer.getFirstName(), customer.getLastName(), customer.getAddress(),
+                customer.getPhone(), customer.getId());
     }
 
     @Override
