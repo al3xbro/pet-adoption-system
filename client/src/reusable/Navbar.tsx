@@ -4,7 +4,7 @@ import { AccountContext } from "../App";
 import throttle from "lodash.throttle";
 
 type ContentView = "card" | "list"
-type PaneView = "profile" | "supplies" | "volunteers" | "pets" | "none"
+type PaneView = "profile" | "customers" | "volunteers" | "pets" | "shelters" | "none"
 
 type Props = {
     paneView: PaneView,
@@ -75,7 +75,7 @@ export default function Navbar({ paneView, contentView, setContentView }: Props)
                         </div>
                         <div className="flex w-1/2 min-w-[10rem] max-w-[30rem] gap-2 bg-gray-200 px-3 py-2 rounded-md">
                             <TfiSearch className="opacity-60 h-full aspect-square" />
-                            <input type="text" className="w-full outline-none bg-transparent" placeholder={`Search ${paneView}`} onChange={e => { setSearchText(e.target.value) }} value={searchText} />
+                            <input type="text" className="w-full outline-none bg-transparent" placeholder={`Search ${paneView}...`} onChange={e => { setSearchText(e.target.value) }} value={searchText} />
                         </div>
                     </>
                     : <div />

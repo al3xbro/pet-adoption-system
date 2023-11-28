@@ -5,7 +5,7 @@ type Props = {
     img: string,
 }
 
-export default function ListElement({ name, summary, desc, img }: Props) {
+export default function ListElement({ name, summary, desc }: Props) {
     return (
         <>
             <div className="w-full h-10 border-b-[1px] border-gray-400 flex px-2 gap-10">

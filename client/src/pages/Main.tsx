@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Navbar from "../reusable/Navbar"
 import Sidebar from "../reusable/Sidebar"
 import Content from "../reusable/Content/Content"
@@ -34,10 +34,22 @@ export default function Main() {
                                 <Content paneView="volunteers" contentView={contentView} />
                             </>
                         } />
+                        <Route path="/customers" element={
+                            <>
+                                <Navbar paneView="customers" contentView={contentView} setContentView={setContentView} />
+                                <Content paneView="customers" contentView={contentView} />
+                            </>
+                        } />
                         <Route path="/pets" element={
                             <>
                                 <Navbar paneView="pets" contentView={contentView} setContentView={setContentView} />
                                 <Content paneView="pets" contentView={contentView} />
+                            </>
+                        } />
+                        <Route path="/shelters" element={
+                            <>
+                                <Navbar paneView="shelters" contentView={contentView} setContentView={setContentView} />
+                                <Content paneView="shelters" contentView={contentView} />
                             </>
                         } />
                         <Route path="/*" element={

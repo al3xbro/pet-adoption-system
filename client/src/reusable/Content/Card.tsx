@@ -5,7 +5,7 @@ type Props = {
     img: string,
 }
 
-export default function Card({ name, summary, desc, img }: Props) {
+export default function Card({ name, summary, img }: Props) {
     return (
         <>
             <div className="rounded-xl h-52 w-full overflow-hidden">

@@ -4,7 +4,7 @@ import ListElement from "./ListElement"
 import { useQuery } from "@tanstack/react-query"
 
 type ContentView = "card" | "list"
-type PaneView = "supplies" | "volunteers" | "pets"
+type PaneView = "customers" | "volunteers" | "pets" | "shelters"
 type DataEntry = {
     id: number,
     name: string,
