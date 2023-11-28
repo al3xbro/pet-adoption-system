@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.team8.petadoptionserver.model.Shelter;
 import com.team8.petadoptionserver.model.ShelterRowMapper;
 
+@Repository
 public class ShelterDAO implements ShelterDAOInt {
 
     private final JdbcTemplate jdbcTemplate;
