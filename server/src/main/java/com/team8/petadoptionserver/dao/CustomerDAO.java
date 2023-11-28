@@ -85,7 +85,7 @@ public class CustomerDAO implements CustomerDAOInt {
     }
 
     @Override
-    public int uptdateCustomer(int customerId, Customer customer) {
+    public int updateCustomer(int customerId, Customer customer) {
         String sql = """
                 UPDATE customer
                 SET customer_first_name = ?, customer_last_name = ?, customer_address = ?, customer_phone = ?
