@@ -3,8 +3,9 @@ package com.team8.petadoptionserver.dao;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.team8.petadoptionserver.model.Shelter;
 import com.team8.petadoptionserver.model.ShelterRowMapper;
