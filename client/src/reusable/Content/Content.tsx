@@ -61,7 +61,7 @@ export default function Content({ contentView, paneView }: Props) {
     const query = useQuery({
         queryKey: ["pet", name],
         queryFn: async () => {
-            return axios.get(`http://localhost:5000/${paneView}/name/${name}`)
+            return axios.get(`http://localhost:5000/api/${paneView}/name/${name}`)
         }
     })
     const data: Array<any> = query.data?.data ?? defaultCards

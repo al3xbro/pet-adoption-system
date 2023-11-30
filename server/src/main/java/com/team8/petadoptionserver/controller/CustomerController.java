@@ -10,7 +10,7 @@ import com.team8.petadoptionserver.dao.CustomerDAO;
 import com.team8.petadoptionserver.model.Customer;
 
 @RestController
-@RequestMapping("/api/shelter")
+@RequestMapping("/api/customers")
 public class CustomerController {
 
     private final CustomerDAO customerDAO;

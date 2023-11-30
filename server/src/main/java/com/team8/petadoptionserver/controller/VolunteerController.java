@@ -15,7 +15,7 @@ import com.team8.petadoptionserver.dao.VolunteerDAO;
 import com.team8.petadoptionserver.model.Volunteer;
 
 @RestController
-@RequestMapping("/api/volunteer")
+@RequestMapping("/api/volunteers")
 public class VolunteerController {
 
     public final VolunteerDAO volunteerDAO;

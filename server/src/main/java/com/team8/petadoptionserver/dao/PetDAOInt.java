@@ -10,10 +10,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PetDAOInt {
     List<Pet> findAll();
+
     Optional<Pet> findById(int id);
+
     List<Pet> findByName(String petName);
+
     List<Pet> findByAge(int petAge);
+
     List<Pet> findBySpecies(String petSpecies);
+
     List<Pet> findByBreed(String petBreed);
 
     int addPet(Pet pet);

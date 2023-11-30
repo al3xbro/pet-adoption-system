@@ -10,7 +10,7 @@ import com.team8.petadoptionserver.dao.ShelterDAO;
 import com.team8.petadoptionserver.model.Shelter;
 
 @RestController
-@RequestMapping("/api/shelter")
+@RequestMapping("/api/shelters")
 public class ShelterController {
 
     public final ShelterDAO shelterDAO;
@@ -26,7 +26,7 @@ public class ShelterController {
     }
 
     @GetMapping({ "", "/" })
-    public List<Shelter> findAll(){
+    public List<Shelter> findAll() {
         return shelterDAO.findAll();
     }
 
@@ -35,12 +35,17 @@ public class ShelterController {
         return shelterDAO.findById(id);
     }
 
+    @GetMapping("/name/{name}")
+    public List<Shelter> findByName(@PathVariable("name") String name) {
+        return shelterDAO.findByName(name);
+    }
+
     @PutMapping("/update/{id}")
     public int updateShelter(@PathVariable("id") int id, @RequestBody Shelter shelter) {
         return shelterDAO.updateShelter(id, shelter);
     }
 
-    @GetMapping("/delet/{id}")
+    @GetMapping("/delete/{id}")
     public int deleteShelter(@PathVariable("id") int id) {
         return shelterDAO.deleteShelter(id);
     }
