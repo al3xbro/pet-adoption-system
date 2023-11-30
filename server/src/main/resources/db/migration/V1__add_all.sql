@@ -4,6 +4,7 @@ CREATE TABLE customer (
     customer_last_name VARCHAR(255) NOT NULL,
     customer_address VARCHAR(255),
     customer_phone VARCHAR(10),
+    link VARCHAR(255),
     PRIMARY KEY (customer_id)
 );
 CREATE TABLE shelter (
@@ -12,6 +13,7 @@ CREATE TABLE shelter (
     shelter_address VARCHAR(255) NOT NULL,
     shelter_phone VARCHAR(255) NOT NULL,
     shelter_num_adoptions INT NOT NULL,
+    link VARCHAR(255),
     PRIMARY KEY (shelter_id)
 );
 CREATE TABLE volunteer (
@@ -19,6 +21,7 @@ CREATE TABLE volunteer (
     volunteer_first_name VARCHAR(255) NOT NULL,
     volunteer_last_name VARCHAR(255) NOT NULL,
     volunteer_hours_worked INT NOT NULL,
+    link VARCHAR(255),
     PRIMARY KEY (volunteer_id)
 );
 CREATE TABLE pet (
@@ -28,6 +31,7 @@ CREATE TABLE pet (
     pet_species VARCHAR(255),
     pet_breed VARCHAR(255),
     shelter_id INT,
+    link VARCHAR(255),
     PRIMARY KEY (pet_id),
     FOREIGN KEY (shelter_id) REFERENCES shelter(shelter_id)
 );

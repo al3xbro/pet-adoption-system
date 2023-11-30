@@ -81,8 +81,7 @@ public class CustomerDAO implements CustomerDAOInt {
                 VALUES (?, ?, ?, ?);
                 """;
 
-        return jdbcTemplate.update(sql, customer.getFirstName(), customer.getLastName(), customer.getAddress(),
-                customer.getPhone());
+        return jdbcTemplate.update(sql, customer.getFirstName(), customer.getLastName(), customer.getAddress(), customer.getPhone());
     }
 
     @Override
@@ -93,8 +92,7 @@ public class CustomerDAO implements CustomerDAOInt {
                 WHERE customer_id = ?;
                 """;
 
-        return jdbcTemplate.update(sql, customer.getFirstName(), customer.getLastName(), customer.getAddress(),
-                customer.getPhone(), customer.getId());
+        return jdbcTemplate.update(sql, customer.getFirstName(), customer.getLastName(), customer.getAddress(), customer.getPhone(), customer.getId());
     }
 
     @Override
