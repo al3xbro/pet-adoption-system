@@ -12,7 +12,8 @@ public class VolunteerRowMapper implements RowMapper<Volunteer> {
                 rs.getInt("volunteer_id"),
                 rs.getString("volunteer_first_name"),
                 rs.getString("volunteer_last_name"),
-                rs.getInt("volunteer_hours_worked"));
+                rs.getInt("volunteer_hours_worked"),
+                rs.getString("img"));
     }
 
 }

@@ -50,7 +50,7 @@ public class CustomerController {
         return customerDAO.updateCustomer(id, customer);
     }
 
-    @GetMapping("/delet/{id}")
+    @GetMapping("/delete/{id}")
     public int deletePet(@PathVariable("id") int id) {
         return customerDAO.deleteCustomer(id);
     }

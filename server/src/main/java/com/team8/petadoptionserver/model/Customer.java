@@ -18,13 +18,17 @@ public class Customer {
     @JsonProperty
     private String customerPhone;
 
+    @JsonProperty
+    private String img;
+
     public Customer(int customerId, String customerFirstName, String customerLastName, 
-            String customerAddress, String customerPhone) {
+            String customerAddress, String customerPhone, String img) {
                 this.customerId = customerId;
                 this.customerFirstName = customerFirstName;
                 this.customerLastName = customerLastName;
                 this.customerAddress = customerAddress;
                 this.customerPhone = customerPhone;
+                this.img = img;
     }
 
     public int getId() {
@@ -67,10 +71,18 @@ public class Customer {
         this.customerPhone = customerPhone;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     @Override
     public String toString() {
         return "Customer{" + "customerId='" + customerId + "', " + "customerFirstName='" + customerFirstName + "', "
                 + "customerLastName='" + customerLastName + "', " + "customerAddress='" + customerAddress + "', "
-                + "customerPhone='" + customerPhone + "'" + "}";
+                + "customerPhone='" + customerPhone + "', " + "customerImg='" + img + "'" + "}";
     }
 }

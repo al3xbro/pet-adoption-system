@@ -16,11 +16,15 @@ public class Volunteer {
     @JsonProperty("volunteer_hours_worked")
     private int volunteerHoursWorked;
 
-    public Volunteer(int volunteerId, String volunteerFirstName, String volunteerLastName, int volunteerHoursWorked) {
+    @JsonProperty
+    private String img;
+
+    public Volunteer(int volunteerId, String volunteerFirstName, String volunteerLastName, int volunteerHoursWorked, String img) {
         this.volunteerId = volunteerId;
         this.volunteerFirstName = volunteerFirstName;
         this.volunteerLastName = volunteerLastName;
         this.volunteerHoursWorked = volunteerHoursWorked;
+        this.img = img;
     }
 
     public int getId() {
@@ -55,13 +59,22 @@ public class Volunteer {
         this.volunteerHoursWorked = volunteerHoursWorked;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     @Override
     public String toString() {
         return "Volunteer{" +
                 "volunteerId='" + volunteerId + "', " +
                 "volunteerFirstName='" + volunteerFirstName + "', " +
                 "volunteerLastName='" + volunteerLastName + "', " +
-                "volunteerHoursWorked='" + volunteerHoursWorked + "'" +
+                "volunteerHoursWorked='" + volunteerHoursWorked + "', " +
+                "volunteerImg='" + img + "'" +
                 "}";
     }
 }

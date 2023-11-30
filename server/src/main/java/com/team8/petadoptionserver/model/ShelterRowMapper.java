@@ -13,7 +13,8 @@ public class ShelterRowMapper implements RowMapper<Shelter> {
                 rs.getString("shelter_name"),
                 rs.getString("shelter_address"),
                 rs.getString("shelter_phone"),
-                rs.getInt("shelter_num_adoptions"));
+                rs.getInt("shelter_num_adoptions"),
+                rs.getString("img"));
     }
 
 }

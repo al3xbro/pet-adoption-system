@@ -18,13 +18,17 @@ public class Shelter {
     @JsonProperty
     private int shelterNumAdoptions;
 
+    @JsonProperty
+    private String img;
+
     public Shelter(int shelterId, String shelterName, String shelterAddress, String shelterPhone,
-            int shelterNumAdoptions) {
+            int shelterNumAdoptions, String img) {
         this.shelterId = shelterId;
         this.shelterName = shelterName;
         this.shelterAddress = shelterAddress;
         this.shelterPhone = shelterPhone;
         this.shelterNumAdoptions = shelterNumAdoptions;
+        this.img = img;
     }
 
     public int getId() {
@@ -67,11 +71,19 @@ public class Shelter {
         this.shelterNumAdoptions = shelterNumAdoptions;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     @Override
     public String toString() {
         return "Shelter{" + "shelterId='" + shelterId + "', " + "shelterName='" + shelterName + "', "
                 + "shelterAddress='" + shelterAddress + "', " + "shelterPhone='" + shelterPhone + "', "
-                + "shelterNumAdoptions='" + shelterNumAdoptions + "'" + "}";
+                + "shelterNumAdoptions='" + shelterNumAdoptions + "', " + "shelterImg='" + img +  "'" + "}";
     }
 
 }

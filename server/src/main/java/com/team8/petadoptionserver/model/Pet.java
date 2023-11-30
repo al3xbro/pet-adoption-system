@@ -18,13 +18,17 @@ public class Pet {
     @JsonProperty
     private String petBreed;
 
+    @JsonProperty
+    private String img;
+
     public Pet(int petId, String petName, int petAge, 
-            String petSpecies, String petBreed) {
+            String petSpecies, String petBreed, String img) {
                 this.petId = petId;
                 this.petName = petName;
                 this.petAge = petAge;
                 this.petSpecies = petSpecies;
                 this.petBreed = petBreed;
+                this.img = img;
     }
 
     public int getId() {
@@ -67,10 +71,18 @@ public class Pet {
         this.petBreed = petBreed;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     @Override
     public String toString() {
         return "Pet{" + "petId='" + petId + "', " + "petName='" + petName + "', "
                 + "petAge='" + petAge + "', " + "petSpecies='" + petSpecies + "', "
-                + "petBreed='" + petBreed + "'" + "}";
+                + "petBreed='" + petBreed + "', " + "petImg='" + img + "'" + "}";
     }
 }

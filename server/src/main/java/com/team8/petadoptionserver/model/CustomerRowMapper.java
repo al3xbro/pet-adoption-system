@@ -13,6 +13,7 @@ public class CustomerRowMapper implements RowMapper<Customer> {
                 rs.getString("customer_first_name"),
                 rs.getString("customer_last_name"),
                 rs.getString("customer_address"),
-                rs.getString("customer_phone"));
+                rs.getString("customer_phone"),
+                rs.getString("img"));
     }
 }

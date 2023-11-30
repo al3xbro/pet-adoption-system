@@ -60,7 +60,7 @@ public class PetController {
         return petDAO.updatePet(id, pet);
     }
 
-    @GetMapping("/delet/{id}")
+    @GetMapping("/delete/{id}")
     public int deletePet(@PathVariable("id") int id) {
         return petDAO.deletePet(id);
     }
