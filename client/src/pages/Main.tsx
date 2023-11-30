@@ -1,14 +1,36 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { AccountContext } from "../App"
 import Navbar from "../reusable/Navbar"
 import Sidebar from "../reusable/Sidebar"
 import Content from "../reusable/Content/Content"
+import CustomerProfile from "./CustomerProfile"
+import VolunteerProfile from "./VolunteerProfile"
+import ShelterProfile from "./ShelterProfile"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 type ContentView = "card" | "list"
 
+type Account = "shelter" | "volunteer" | "customer"
+type AccountContextType = {
+    accountType: Account,
+    setAccountType: React.Dispatch<React.SetStateAction<Account>>
+}
+
+function profileSwitch(accountContext: AccountContextType | undefined) {
+    switch (accountContext?.accountType) {
+        case "customer":
+            return <CustomerProfile />
+        case "volunteer":
+            return <VolunteerProfile />
+        case "shelter":
+            return <ShelterProfile />
+    }
+}
+
 
 export default function Main() {
 
+    const accountContext = useContext(AccountContext)
     const [contentView, setContentView] = useState<ContentView>("card")
 
     return (
@@ -25,7 +47,9 @@ export default function Main() {
                         <Route path="/profile" element={
                             <>
                                 <Navbar paneView="profile" contentView={contentView} setContentView={setContentView} />
-                                <div>profile here</div>
+                                {
+                                    profileSwitch(accountContext)
+                                }
                             </>
                         } />
                         <Route path="/volunteers" element={
