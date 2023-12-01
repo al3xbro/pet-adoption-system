@@ -13,6 +13,18 @@ import com.team8.petadoptionserver.model.Shelter;
 @RequestMapping("/api/shelters")
 public class ShelterController {
 
+    /*
+     * Shelter {
+     * "id",
+     * "name",
+     * "address",
+     * "phone",
+     * "desc",
+     * "img",
+     * "numAdoptions"
+     * }
+     */
+
     public final ShelterDAO shelterDAO;
 
     @Autowired
@@ -34,6 +46,7 @@ public class ShelterController {
     public List<Shelter> findByName(@PathVariable("name") String name) {
         return shelterDAO.findByName(name);
     }
+
     @GetMapping("/address/{address}")
     public List<Shelter> findByAddress(@PathVariable("address") String address) {
         return shelterDAO.findByAddress(address);

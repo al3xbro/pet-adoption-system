@@ -13,6 +13,19 @@ import com.team8.petadoptionserver.model.Pet;
 @RequestMapping("/api/pets")
 public class PetController {
 
+    /*
+     * Pet {
+     * "id",
+     * "name",
+     * "age",
+     * "species",
+     * "breed",
+     * "desc",
+     * "img",
+     * "shelter will be added"
+     * }
+     */
+
     private final PetDAO petDAO;
 
     @Autowired

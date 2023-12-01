@@ -15,6 +15,17 @@ public class VolunteerController {
 
     public final VolunteerDAO volunteerDAO;
 
+    /*
+     * Volunteer {
+     * id,
+     * firstName,
+     * lastName,
+     * hoursWorked,
+     * img,
+     * shelter will be added
+     * }
+     */
+
     @Autowired
     public VolunteerController(VolunteerDAO volunteerDAO) {
         this.volunteerDAO = volunteerDAO;
@@ -49,7 +60,6 @@ public class VolunteerController {
     public int updateVolunteer(@PathVariable("id") int id, @RequestBody Volunteer volunteer) {
         return volunteerDAO.updateVolunteer(id, volunteer);
     }
-
 
     @GetMapping("/delete/{id}")
     public int deleteVolunteer(@PathVariable("id") int id) {

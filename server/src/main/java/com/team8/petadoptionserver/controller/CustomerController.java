@@ -13,12 +13,23 @@ import com.team8.petadoptionserver.model.Customer;
 @RequestMapping("/api/customers")
 public class CustomerController {
 
+    /*
+     * Customer {
+     * "id",
+     * "address",
+     * "firstName",
+     * "lastName",
+     * "phone"
+     * }
+     */
+
     private final CustomerDAO customerDAO;
 
     @Autowired
     public CustomerController(CustomerDAO customerDAO) {
         this.customerDAO = customerDAO;
     }
+
     @GetMapping({ "", "/" })
     public List<Customer> findAll() {
         return customerDAO.findAll();
