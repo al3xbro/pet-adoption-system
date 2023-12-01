@@ -4,12 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.team8.petadoptionserver.dao.VolunteerDAO;
 import com.team8.petadoptionserver.model.Volunteer;
@@ -26,13 +21,23 @@ public class VolunteerController {
     }
 
     @GetMapping({ "", "/" })
-    public List<Volunteer> getAll() {
+    public List<Volunteer> findAll() {
         return volunteerDAO.findAll();
     }
 
     @GetMapping("/id/{id}")
-    public Optional<Volunteer> getById(@PathVariable("id") int id) {
+    public Optional<Volunteer> findById(@PathVariable("id") int id) {
         return volunteerDAO.findById(id);
+    }
+
+    @GetMapping("/name/{name}")
+    public List<Volunteer> findByName(@PathVariable("name") String name) {
+        return volunteerDAO.findByName(name);
+    }
+
+    @GetMapping("/shelter/{shelter}")
+    public List<Volunteer> findByShelter(@PathVariable("shelter") int id) {
+        return volunteerDAO.findByShelter(id);
     }
 
     @PostMapping({ "", "/" })
@@ -40,7 +45,13 @@ public class VolunteerController {
         return volunteerDAO.addVolunteer(volunteer);
     }
 
-    @GetMapping("/delet/{id}")
+    @PutMapping("update/{id}")
+    public int updateVolunteer(@PathVariable("id") int id, @RequestBody Volunteer volunteer) {
+        return volunteerDAO.updateVolunteer(id, volunteer);
+    }
+
+
+    @GetMapping("/delete/{id}")
     public int deleteVolunteer(@PathVariable("id") int id) {
         return volunteerDAO.deleteVolunteer(id);
     }
