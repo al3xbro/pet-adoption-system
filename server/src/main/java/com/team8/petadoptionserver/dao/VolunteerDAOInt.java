@@ -21,7 +21,7 @@ public interface VolunteerDAOInt {
 
     List<Volunteer> findByShelter(int shelterId);
 
-    List<Shelter> findShelterForVolunteer(int volunteerID);
+    List<Shelter> findShelterForVolunteer(int volunteerId);
 
     // post
 
