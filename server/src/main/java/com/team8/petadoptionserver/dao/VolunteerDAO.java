@@ -65,7 +65,7 @@ public class VolunteerDAO implements VolunteerDAOInt {
     @Override
     public List<Shelter> findShelterForVolunteer(int volunteerID) {
         String sql = """
-                SELECT s.*
+                SELECT *
                 FROM shelter s
                 INNER JOIN volunteers_at va ON s.shelter_id = va.shelter_id
                 WHERE va.volunteer_id=?;
