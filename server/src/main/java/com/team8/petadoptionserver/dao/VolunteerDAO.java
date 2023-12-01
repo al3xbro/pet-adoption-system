@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.team8.petadoptionserver.model.Volunteer;
 import com.team8.petadoptionserver.model.VolunteerRowMapper;
+import com.team8.petadoptionserver.model.Shelter;
+import com.team8.petadoptionserver.model.ShelterRowMapper;
 
 @Repository
 public class VolunteerDAO implements VolunteerDAOInt {
@@ -58,6 +60,17 @@ public class VolunteerDAO implements VolunteerDAOInt {
                 WHERE volunteer_shelter_id=?;
                 """;
         return jdbcTemplate.query(sql, new VolunteerRowMapper(), shelterId);
+    }
+
+    @Override
+    public List<Shelter> findShelterForVolunteer(int volunteerID) {
+        String sql = """
+                SELECT s.*
+                FROM shelter s
+                INNER JOIN volunteers_at va ON s.shelter_id = va.shelter_id
+                WHERE va.volunteer_id=?;
+                """;
+        return jdbcTemplate.query(sql, new ShelterRowMapper(), volunteerID);
     }
 
     @Override

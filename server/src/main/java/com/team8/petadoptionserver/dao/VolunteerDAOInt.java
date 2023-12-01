@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 import com.team8.petadoptionserver.model.Volunteer;
+import com.team8.petadoptionserver.model.Shelter;
 
 @Repository
 public interface VolunteerDAOInt {
@@ -19,6 +20,8 @@ public interface VolunteerDAOInt {
     List<Volunteer> findByName(String volunteerName);
 
     List<Volunteer> findByShelter(int shelterId);
+
+    List<Shelter> findShelterForVolunteer(int volunteerID);
 
     // post
 
