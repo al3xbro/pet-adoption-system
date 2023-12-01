@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.team8.petadoptionserver.model.Pet;
 import com.team8.petadoptionserver.model.PetRowMapper;
+import com.team8.petadoptionserver.model.Shelter;
+import com.team8.petadoptionserver.model.ShelterRowMapper;
 
 @Repository
 public class PetDAO implements PetDAOInt {
@@ -23,7 +25,7 @@ public class PetDAO implements PetDAOInt {
    @Override
    public List<Pet> findAll() {
         String sql = """
-                SELECT * 
+                SELECT *
                 FROM pet
                 LIMIT 100;
                 """;
@@ -56,8 +58,8 @@ public class PetDAO implements PetDAOInt {
     @Override
     public List<Pet> findByAge(int petAge) {
         String sql = """
-                SELECT * 
-                FROM pet 
+                SELECT *
+                FROM pet
                 WHERE pet_age = ?;
                 """;
 
@@ -67,8 +69,8 @@ public class PetDAO implements PetDAOInt {
     @Override
     public List<Pet> findBySpecies(String petSpecies) {
         String sql = """
-                SELECT * 
-                FROM pet 
+                SELECT *
+                FROM pet
                 WHERE pet_species = ?;
                 """;
 
@@ -78,12 +80,23 @@ public class PetDAO implements PetDAOInt {
     @Override
     public List<Pet> findByBreed(String petBreed) {
         String sql = """
-                SELECT * 
-                FROM pet 
+                SELECT *
+                FROM pet
                 WHERE pet_breed = ?;
                 """;
 
         return jdbcTemplate.query(sql, new PetRowMapper(), petBreed);
+    }
+
+    @Override
+    public List<Shelter> findShelterForPet(int petId) {
+        String sql = """
+                SELECT *
+                FROM shelter s
+                INNER JOIN pet p ON s.shelter_id = p.shelter_id
+                WHERE p.pet_id=?;
+                """;
+        return jdbcTemplate.query(sql, new ShelterRowMapper(), petId);
     }
 
     @Override
@@ -99,8 +112,8 @@ public class PetDAO implements PetDAOInt {
     @Override
     public int updatePet(int petId, Pet pet) {
         String sql = """
-                UPDATE pet 
-                SET pet_name = ?, pet_age = ?, pet_species = ?, pet_breed = ? 
+                UPDATE pet
+                SET pet_name = ?, pet_age = ?, pet_species = ?, pet_breed = ?
                 WHERE pet_id = ?;
                 """;
 
@@ -110,7 +123,7 @@ public class PetDAO implements PetDAOInt {
     @Override
     public int deletePet(int petId) {
         String sql = """
-                DELETE FROM pet 
+                DELETE FROM pet
                 WHERE pet_id = ?;
                 """;
 

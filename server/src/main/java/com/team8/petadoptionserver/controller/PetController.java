@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.team8.petadoptionserver.dao.PetDAO;
 import com.team8.petadoptionserver.model.Pet;
+import com.team8.petadoptionserver.model.Shelter;
 
 @RestController
 @RequestMapping("/api/pets")
@@ -61,6 +62,11 @@ public class PetController {
     @GetMapping("/breed/{breed}")
     public List<Pet> findByBreed(@PathVariable("breed") String breed) {
         return petDAO.findByBreed(breed);
+    }
+
+    @GetMapping("/shelter/{petId}")
+    public List<Shelter> findShelterForPet(@PathVariable("petId") int petId) {
+        return petDAO.findShelterForPet(petId);
     }
 
     @PostMapping({ "", "/" })

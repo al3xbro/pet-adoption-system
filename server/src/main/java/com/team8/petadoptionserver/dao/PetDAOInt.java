@@ -1,6 +1,7 @@
 package com.team8.petadoptionserver.dao;
 
 import com.team8.petadoptionserver.model.Pet;
+import com.team8.petadoptionserver.model.Shelter;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +21,8 @@ public interface PetDAOInt {
     List<Pet> findBySpecies(String petSpecies);
 
     List<Pet> findByBreed(String petBreed);
+
+    List<Shelter> findShelterForPet(int petId);
 
     int addPet(Pet pet);
 
