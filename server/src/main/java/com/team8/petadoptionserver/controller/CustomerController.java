@@ -19,6 +19,10 @@ public class CustomerController {
     public CustomerController(CustomerDAO customerDAO) {
         this.customerDAO = customerDAO;
     }
+    @GetMapping({ "", "/" })
+    public List<Customer> findAll() {
+        return customerDAO.findAll();
+    }
 
     @GetMapping("/id/{id}")
     public Optional<Customer> findById(@PathVariable("id") int id) {
@@ -51,7 +55,7 @@ public class CustomerController {
     }
 
     @GetMapping("/delete/{id}")
-    public int deletePet(@PathVariable("id") int id) {
+    public int deleteCustomer(@PathVariable("id") int id) {
         return customerDAO.deleteCustomer(id);
     }
 }
