@@ -51,6 +51,25 @@ public class ShelterDAO implements ShelterDAOInt {
     }
 
     @Override
+    public List<Shelter> findByAddress(String shelterAddress) {
+        String sql = """
+                SELECT *
+                FROM shelter
+                WHERE shelter_address LIKE `%?%`;
+                """;
+        return jdbcTemplate.query(sql, new ShelterRowMapper(), shelterAddress);
+    }
+
+    @Override
+    public List<Shelter> findByPhone(String shelterPhone) {
+        String sql = """
+                SELECT *
+                FROM shelter
+                WHERE shelter_phone LIKE `%?%`;
+                """;
+        return jdbcTemplate.query(sql, new ShelterRowMapper(), shelterPhone);    }
+
+    @Override
     public int addShelter(Shelter shelter) {
         String sql = """
                 INSERT INTO shelter (shelter_name, shelter_address, shelter_phone, shelter_num_adoptions)

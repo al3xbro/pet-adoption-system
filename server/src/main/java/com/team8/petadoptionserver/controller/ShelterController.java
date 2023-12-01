@@ -20,11 +20,6 @@ public class ShelterController {
         this.shelterDAO = shelterDAO;
     }
 
-    @PostMapping({ "", "/" })
-    public int addShelter(@RequestBody Shelter shelter) {
-        return shelterDAO.addShelter(shelter);
-    }
-
     @GetMapping({ "", "/" })
     public List<Shelter> findAll() {
         return shelterDAO.findAll();
@@ -38,6 +33,20 @@ public class ShelterController {
     @GetMapping("/name/{name}")
     public List<Shelter> findByName(@PathVariable("name") String name) {
         return shelterDAO.findByName(name);
+    }
+    @GetMapping("/address/{address}")
+    public List<Shelter> findByAddress(@PathVariable("address") String address) {
+        return shelterDAO.findByAddress(address);
+    }
+
+    @GetMapping("/phone/{phone}")
+    public List<Shelter> findByPhone(@PathVariable("phone") String phone) {
+        return shelterDAO.findByPhone(phone);
+    }
+
+    @PostMapping({ "", "/" })
+    public int addShelter(@RequestBody Shelter shelter) {
+        return shelterDAO.addShelter(shelter);
     }
 
     @PutMapping("/update/{id}")

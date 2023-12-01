@@ -15,6 +15,10 @@ public interface ShelterDAOInt {
 
     List<Shelter> findByName(String shelterName);
 
+    List<Shelter> findByAddress(String shelterAddress);
+
+    List<Shelter> findByPhone(String shelterPhone);
+
     // post
 
     int addShelter(Shelter shelter);
