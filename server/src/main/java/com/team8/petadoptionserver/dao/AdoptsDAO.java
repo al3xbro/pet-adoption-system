@@ -39,4 +39,13 @@ public class AdoptsDAO implements AdoptsDAOInt{
         return jdbcTemplate.queryForList(sql);
     }
 
+    @Override
+    public int addAdoption(int petId, int customerId, int volunteerId, int shelterId) {
+        String sql = """
+                INSERT INTO adopts (pet_id, customer_id, volunteer_id, shelter_id, adopt_date)
+                VALUES (?, ?, ?, ?, CURDATE());
+                """;
+        return jdbcTemplate.update(sql, petId, customerId, volunteerId, shelterId);
+    }
+
 }
