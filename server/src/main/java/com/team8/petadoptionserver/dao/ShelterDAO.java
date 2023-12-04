@@ -45,9 +45,9 @@ public class ShelterDAO implements ShelterDAOInt {
         String sql = """
                 SELECT *
                 FROM shelter
-                WHERE LOWER(shelter_name) LIKE LOWER(`%?%`);
+                WHERE LOWER(shelter_name) LIKE LOWER(?);
                 """;
-        return jdbcTemplate.query(sql, new ShelterRowMapper(), shelterName);
+        return jdbcTemplate.query(sql, new ShelterRowMapper(), "?" + shelterName + "?");
     }
 
     @Override

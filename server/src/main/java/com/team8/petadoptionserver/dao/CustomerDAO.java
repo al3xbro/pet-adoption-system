@@ -46,10 +46,10 @@ public class CustomerDAO implements CustomerDAOInt {
         String sql = """
                 SELECT *
                 FROM customer
-                WHERE LOWER(customer_name) LIKE LOWER(`%?%`);
+                WHERE LOWER(customer_name) LIKE LOWER(?);
                 """;
 
-        return jdbcTemplate.query(sql, new CustomerRowMapper(), customerName);
+        return jdbcTemplate.query(sql, new CustomerRowMapper(), "?" + customerName + "?");
     }
 
     @Override

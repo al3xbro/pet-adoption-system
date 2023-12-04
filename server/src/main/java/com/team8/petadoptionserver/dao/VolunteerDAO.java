@@ -47,9 +47,9 @@ public class VolunteerDAO implements VolunteerDAOInt {
         String sql = """
                 SELECT *
                 FROM volunteer
-                WHERE LOWER(CONCAT(volunteer_first_name, ' ', volunteer_last_name)) LIKE LOWER(`%?%`);
+                WHERE LOWER(CONCAT(volunteer_first_name, ' ', volunteer_last_name)) LIKE LOWER(?);
                 """;
-        return jdbcTemplate.query(sql, new VolunteerRowMapper(), volunteerName);
+        return jdbcTemplate.query(sql, new VolunteerRowMapper(), "?" + volunteerName + "?");
     }
 
     @Override
