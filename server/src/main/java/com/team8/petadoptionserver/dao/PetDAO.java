@@ -100,22 +100,22 @@ public class PetDAO implements PetDAOInt {
     @Override
     public int addPet(Pet pet) {
         String sql = """
-                INSERT INTO pet (pet_name, pet_age, pet_species, pet_breed)
-                VALUES (?, ?, ?, ?);
+                INSERT INTO pet (pet_name, pet_age, pet_species, pet_breed, pet_sex)
+                VALUES (?, ?, ?, ?, ?);
                 """;
 
-        return jdbcTemplate.update(sql, pet.getName(), pet.getAge(), pet.getSpecies(), pet.getBreed());
+        return jdbcTemplate.update(sql, pet.getName(), pet.getAge(), pet.getSpecies(), pet.getBreed(), pet.getSex());
     }
 
     @Override
     public int updatePet(int petId, Pet pet) {
         String sql = """
                 UPDATE pet
-                SET pet_name = ?, pet_age = ?, pet_species = ?, pet_breed = ?
+                SET pet_name = ?, pet_age = ?, pet_species = ?, pet_breed = ?, pet_sex = ?
                 WHERE pet_id = ?;
                 """;
 
-        return jdbcTemplate.update(sql, pet.getName(), pet.getAge(), pet.getSpecies(), pet.getBreed(), pet.getId());
+        return jdbcTemplate.update(sql, pet.getName(), pet.getAge(), pet.getSpecies(), pet.getBreed(), pet.getSex(), pet.getId());
     }
 
     @Override
