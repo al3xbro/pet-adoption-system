@@ -37,7 +37,7 @@ export default function Main() {
         <>
             <BrowserRouter>
                 <Sidebar />
-                <div className="h-full w-full sm:w-[calc(100%-18rem)]">
+                <div className="h-full w-full sm:w-[calc(100%-18rem)] select-none">
                     <Routes>
                         <Route path="/" element={
                             <>
@@ -74,6 +74,12 @@ export default function Main() {
                             <>
                                 <Navbar paneView="shelters" contentView={contentView} setContentView={setContentView} />
                                 <Content paneView="shelters" contentView={contentView} />
+                            </>
+                        } />
+                        <Route path="/logs" element={
+                            <>
+                                <Navbar paneView="profile" contentView={contentView} setContentView={setContentView} />
+                                <Content paneView="logs" contentView={contentView} />
                             </>
                         } />
                         <Route path="/*" element={

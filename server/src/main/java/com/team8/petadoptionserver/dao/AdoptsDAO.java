@@ -4,11 +4,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.team8.petadoptionserver.model.Log;
+import com.team8.petadoptionserver.model.LogRowMapper;
+
 import java.util.List;
 import java.util.Map;
 
 @Repository
-public class AdoptsDAO implements AdoptsDAOInt{
+public class AdoptsDAO implements AdoptsDAOInt {
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -40,12 +43,13 @@ public class AdoptsDAO implements AdoptsDAOInt{
     }
 
     @Override
-    public int addAdoption(int petId, int customerId, int volunteerId, int shelterId) {
+    public int addAdoption(Log log) {
         String sql = """
                 INSERT INTO adopts (pet_id, customer_id, volunteer_id, shelter_id, adopt_date)
                 VALUES (?, ?, ?, ?, CURDATE());
                 """;
-        return jdbcTemplate.update(sql, petId, customerId, volunteerId, shelterId);
+        return jdbcTemplate.update(sql, log.getPetId(), log.getCustomerId(), log.getVolunteerId(),
+                log.getShelterId());
     }
 
 }

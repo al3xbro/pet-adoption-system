@@ -1,6 +1,8 @@
 package com.team8.petadoptionserver.controller;
 
 import com.team8.petadoptionserver.dao.AdoptsDAO;
+import com.team8.petadoptionserver.model.Log;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,13 +25,7 @@ public class AdoptsController {
     }
 
     @PostMapping({ "", "/" })
-    public int addAdoption(@RequestBody Map<String, Object> adoptionData) {
-        int petId = (int) adoptionData.get("pet_id");
-        int customerId = (int) adoptionData.get("customer_id");
-        int volunteerId = (int) adoptionData.get("volunteer_id");
-        int shelterId = (int) adoptionData.get("shelter_id");
-
-        return adoptsDAO.addAdoption(petId,customerId,volunteerId, shelterId);
-
+    public int addAdoption(@RequestBody Log adoptionData) {
+        return adoptsDAO.addAdoption(adoptionData);
     }
 }

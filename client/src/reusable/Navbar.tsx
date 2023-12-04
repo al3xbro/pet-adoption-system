@@ -5,7 +5,7 @@ import throttle from "lodash.throttle";
 import { useSearchParams } from "react-router-dom";
 
 type ContentView = "card" | "list"
-type PaneView = "profile" | "customers" | "volunteers" | "pets" | "shelters" | "none"
+type PaneView = "profile" | "customers" | "volunteers" | "pets" | "shelters" | "logs" | "none"
 
 type Props = {
     paneView: PaneView,
@@ -88,7 +88,7 @@ export default function Navbar({ paneView, contentView, setContentView }: Props)
                 </div>
             </div>
             {dropdownState ?
-                <div ref={dropdownRef} className="absolute top-14 right-4 overflow-hidden bg-gray-200 border rounded-md shadow-xl">
+                <div ref={dropdownRef} className="absolute z-20 top-14 right-4 overflow-hidden bg-gray-200 border rounded-md shadow-xl">
                     <div className="py-1 px-2 hover:bg-gray-300" onClick={() => setAccountType("customer")}>Customer</div>
                     <div className="py-1 px-2 hover:bg-gray-300 border-y-[1px] border-gray-400" onClick={() => setAccountType("volunteer")}>Volunteer</div>
                     <div className="py-1 px-2 hover:bg-gray-300" onClick={() => setAccountType("shelter")}>Shelter</div>

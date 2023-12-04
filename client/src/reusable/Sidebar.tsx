@@ -10,7 +10,7 @@ export default function Sidebar() {
     // TODO: add login account query, hard code for now
     return (
         <>
-            <div className="hidden sm:flex h-full w-72 sm:border-r-2 sm:border-r-black sm:border-t-0 border-t-2 border-t-black overflow-y-auto flex-col p-4 gap-2 " >
+            <div className="select-none hidden sm:flex h-full w-72 sm:border-r-2 sm:border-r-black sm:border-t-0 border-t-2 border-t-black overflow-y-auto flex-col p-4 gap-2 " >
                 {accountType == "customer" ?
                     <>
                         <Link className="aspect-square border-2 rounded-xl overflow-hidden m-4" to="/profile">

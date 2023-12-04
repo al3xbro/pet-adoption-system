@@ -16,6 +16,9 @@ public class Pet {
     private String petSpecies;
 
     @JsonProperty
+    private int shelterId;
+
+    @JsonProperty
     private String petBreed;
 
     @JsonProperty
@@ -24,15 +27,16 @@ public class Pet {
     @JsonProperty
     private String img;
 
-    public Pet(int petId, String petName, int petAge, 
+    public Pet(int petId, String petName, int petAge, int shelterId,
             String petSpecies, String petBreed, String petSex, String img) {
-                this.petId = petId;
-                this.petName = petName;
-                this.petAge = petAge;
-                this.petSpecies = petSpecies;
-                this.petBreed = petBreed;
-                this.petSex = petSex;
-                this.img = img;
+        this.petId = petId;
+        this.petName = petName;
+        this.petAge = petAge;
+        this.shelterId = shelterId;
+        this.petSpecies = petSpecies;
+        this.petBreed = petBreed;
+        this.petSex = petSex;
+        this.img = img;
     }
 
     public int getId() {
@@ -67,6 +71,14 @@ public class Pet {
         this.petSpecies = petSpecies;
     }
 
+    public int getShelterId() {
+        return shelterId;
+    }
+
+    public void setShelterId(int shelterId) {
+        this.shelterId = shelterId;
+    }
+
     public String getBreed() {
         return petBreed;
     }
@@ -95,7 +107,7 @@ public class Pet {
     public String toString() {
         return "Pet{" + "petId='" + petId + "', " + "petName='" + petName + "', "
                 + "petAge='" + petAge + "', " + "petSpecies='" + petSpecies + "', "
-                + "petBreed='" + petBreed + "', " + "petSex='" + petSex + "', " 
+                + "petBreed='" + petBreed + "', " + "petSex='" + petSex + "', "
                 + "petImg='" + img + "'" + "}";
     }
 }

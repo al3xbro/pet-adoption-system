@@ -12,6 +12,7 @@ public class PetRowMapper implements RowMapper<Pet> {
                 rs.getInt("pet_id"),
                 rs.getString("pet_name"),
                 rs.getInt("pet_age"),
+                rs.getInt("shelter_id"),
                 rs.getString("pet_species"),
                 rs.getString("pet_breed"),
                 rs.getString("pet_sex"),

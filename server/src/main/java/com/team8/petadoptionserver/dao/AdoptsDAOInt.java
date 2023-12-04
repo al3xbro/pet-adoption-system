@@ -2,6 +2,8 @@ package com.team8.petadoptionserver.dao;
 
 import org.springframework.stereotype.Repository;
 
+import com.team8.petadoptionserver.model.Log;
+
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +12,6 @@ public interface AdoptsDAOInt {
 
     List<Map<String, Object>> findAll();
 
-    public int addAdoption(int petId, int customerId, int volunteerId, int shelterId);
+    public int addAdoption(Log log);
 
 }

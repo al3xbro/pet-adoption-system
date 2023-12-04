@@ -6,7 +6,7 @@ import Card from "./Card"
 import ListElement from "./ListElement"
 
 type ContentView = "card" | "list"
-type PaneView = "customers" | "volunteers" | "pets" | "shelters"
+type PaneView = "customers" | "volunteers" | "pets" | "shelters" | "logs"
 
 type Props = {
     contentView: ContentView,
@@ -34,16 +34,17 @@ export default function Content({ contentView, paneView }: Props) {
 
     // FIXME: json data
     const cardFactory = (element: any) => {
-        console.log(element)
         switch (paneView) {
             case "pets":
-                return <Card key={element.id} name={element.name} summary={`${element.sex} - ${element.age > 12 ? `${Math.floor(element.age / 12)}yr` : `${element.age}mo`} - ${element.breed}`} desc={element.desc} img={element.img} />
+                return <Card key={element.id} id={element.id} name={element.name} shelterId={element.shelterId} summary={`${element.sex} - ${element.age > 12 ? `${Math.floor(element.age / 12)}yr` : `${element.age}mo`} - ${element.breed}`} desc={element.desc} img={element.img} />
             case "volunteers":
-                return <Card key={element.id} name={`${element.firstName} ${element.lastName}`} summary={`${element.hoursWorked} hrs`} desc={""} img={element.img} />
+                return <Card key={element.id} id={element.id} shelterId={0} name={`${element.firstName} ${element.lastName}`} summary={`${element.hoursWorked} hrs`} desc={""} img={element.img} />
             case "customers":
-                return <Card key={element.id} name={`${element.firstName} ${element.lastName}`} summary={""} desc={`${element.phone} - ${element.address}`} img={element.img} />
+                return <Card key={element.id} id={element.id} shelterId={0} name={`${element.firstName} ${element.lastName}`} summary={""} desc={`${element.phone} - ${element.address}`} img={element.img} />
             case "shelters":
-                return <Card key={element.id} name={element.name} summary={`${element.numAdoptions} adoptions`} desc={`${element.phone} - ${element.address}`} img={element.img} />
+                return <Card key={element.id} id={element.id} shelterId={0} name={element.name} summary={`${element.numAdoptions} adoptions`} desc={`${element.phone} - ${element.address}`} img={element.img} />
+            case "logs":
+                return <div className="w-full h-10 border-b-[1px] border-gray-400 flex px-2 gap-10">{element}</div>
         }
     }
 
