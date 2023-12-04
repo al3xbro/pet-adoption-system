@@ -1,0 +1,1 @@
+ALTER TABLE pet ADD COLUMN pet_sex CHAR(1);
