@@ -10,4 +10,6 @@ public interface AdoptsDAOInt {
 
     List<Map<String, Object>> findAll();
 
+    public int addAdoption(int petId, int customerId, int volunteerId, int shelterId);
+
 }
