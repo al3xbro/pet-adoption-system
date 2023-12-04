@@ -1,0 +1,1 @@
+ALTER TABLE pet ADD NEW COLUMN pet_sex ENUM('F', 'M');
