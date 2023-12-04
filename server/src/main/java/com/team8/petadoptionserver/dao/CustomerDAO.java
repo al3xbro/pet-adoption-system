@@ -46,7 +46,7 @@ public class CustomerDAO implements CustomerDAOInt {
         String sql = """
                 SELECT *
                 FROM customer
-                WHERE customer_name = ?;
+                WHERE LOWER(customer_name) LIKE LOWER(`%?%`);
                 """;
 
         return jdbcTemplate.query(sql, new CustomerRowMapper(), customerName);
@@ -81,7 +81,8 @@ public class CustomerDAO implements CustomerDAOInt {
                 VALUES (?, ?, ?, ?);
                 """;
 
-        return jdbcTemplate.update(sql, customer.getFirstName(), customer.getLastName(), customer.getAddress(), customer.getPhone());
+        return jdbcTemplate.update(sql, customer.getFirstName(), customer.getLastName(), customer.getAddress(),
+                customer.getPhone());
     }
 
     @Override
@@ -92,7 +93,8 @@ public class CustomerDAO implements CustomerDAOInt {
                 WHERE customer_id = ?;
                 """;
 
-        return jdbcTemplate.update(sql, customer.getFirstName(), customer.getLastName(), customer.getAddress(), customer.getPhone(), customer.getId());
+        return jdbcTemplate.update(sql, customer.getFirstName(), customer.getLastName(), customer.getAddress(),
+                customer.getPhone(), customer.getId());
     }
 
     @Override

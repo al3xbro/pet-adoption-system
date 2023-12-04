@@ -22,16 +22,16 @@ public class PetDAO implements PetDAOInt {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-   @Override
-   public List<Pet> findAll() {
+    @Override
+    public List<Pet> findAll() {
         String sql = """
                 SELECT *
                 FROM pet
                 LIMIT 100;
                 """;
-        
+
         return jdbcTemplate.query(sql, new PetRowMapper());
-   }
+    }
 
     @Override
     public Optional<Pet> findById(int petId) {
@@ -49,7 +49,7 @@ public class PetDAO implements PetDAOInt {
         String sql = """
                 SELECT *
                 FROM pet
-                WHERE pet_name=?;
+                WHERE LOWER(pet_name) LIKE LOWER(`%?%`);
                 """;
 
         return jdbcTemplate.query(sql, new PetRowMapper(), petName);

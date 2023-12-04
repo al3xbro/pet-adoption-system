@@ -45,7 +45,7 @@ public class ShelterDAO implements ShelterDAOInt {
         String sql = """
                 SELECT *
                 FROM shelter
-                WHERE shelter_name LIKE `%?%`;
+                WHERE LOWER(shelter_name) LIKE LOWER(`%?%`);
                 """;
         return jdbcTemplate.query(sql, new ShelterRowMapper(), shelterName);
     }
@@ -67,7 +67,8 @@ public class ShelterDAO implements ShelterDAOInt {
                 FROM shelter
                 WHERE shelter_phone LIKE `%?%`;
                 """;
-        return jdbcTemplate.query(sql, new ShelterRowMapper(), shelterPhone);    }
+        return jdbcTemplate.query(sql, new ShelterRowMapper(), shelterPhone);
+    }
 
     @Override
     public int addShelter(Shelter shelter) {

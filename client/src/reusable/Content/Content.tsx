@@ -22,7 +22,7 @@ export default function Content({ contentView, paneView }: Props) {
         queryKey: [paneView],
         queryFn: async () => {
             if (!searchParams.get("q")) return axios.get(`http://localhost:8080/api/${paneView}`)
-            else return axios.get(`http://localhost:8080/api/${paneView}/name/${searchParams.get("q")?.toLocaleLowerCase()}`)
+            else return axios.get(`http://localhost:8080/api/${paneView}/name/${searchParams.get("q")}`)
         }
     })
 
