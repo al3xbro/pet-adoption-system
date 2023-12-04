@@ -19,15 +19,19 @@ public class Pet {
     private String petBreed;
 
     @JsonProperty
+    private String petSex;
+
+    @JsonProperty
     private String img;
 
     public Pet(int petId, String petName, int petAge, 
-            String petSpecies, String petBreed, String img) {
+            String petSpecies, String petBreed, String petSex, String img) {
                 this.petId = petId;
                 this.petName = petName;
                 this.petAge = petAge;
                 this.petSpecies = petSpecies;
                 this.petBreed = petBreed;
+                this.petSex = petSex;
                 this.img = img;
     }
 
@@ -79,10 +83,19 @@ public class Pet {
         this.img = img;
     }
 
+    public String getSex() {
+        return petSex;
+    }
+
+    public void setSex(String petSex) {
+        this.petSex = petSex;
+    }
+
     @Override
     public String toString() {
         return "Pet{" + "petId='" + petId + "', " + "petName='" + petName + "', "
                 + "petAge='" + petAge + "', " + "petSpecies='" + petSpecies + "', "
-                + "petBreed='" + petBreed + "', " + "petImg='" + img + "'" + "}";
+                + "petBreed='" + petBreed + "', " + "petSex='" + petSex + "', " 
+                + "petImg='" + img + "'" + "}";
     }
 }
