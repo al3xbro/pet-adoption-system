@@ -49,10 +49,10 @@ public class PetDAO implements PetDAOInt {
         String sql = """
                 SELECT *
                 FROM pet
-                WHERE LOWER(pet_name) LIKE LOWER(`%?%`);
+                WHERE LOWER(pet_name) LIKE LOWER(?);
                 """;
 
-        return jdbcTemplate.query(sql, new PetRowMapper(), petName);
+        return jdbcTemplate.query(sql, new PetRowMapper(), "?" + petName + "?");
     }
 
     @Override
