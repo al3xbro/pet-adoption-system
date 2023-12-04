@@ -46,13 +46,11 @@ public class PetDAO implements PetDAOInt {
 
     @Override
     public List<Pet> findByName(String petName) {
-        String sql = """
-                SELECT *
-                FROM pet
-                WHERE LOWER(pet_name) LIKE LOWER(?);
-                """;
-
-        return jdbcTemplate.query(sql, new PetRowMapper(), "?" + petName + "?");
+        String sql = "SELECT * " +
+                "FROM pet " +
+                "WHERE pet_name LIKE \'%" + petName + "%\';";
+        System.out.println(sql);
+        return jdbcTemplate.query(sql, new PetRowMapper());
     }
 
     @Override
