@@ -14,7 +14,7 @@ export default function Sidebar() {
                 {accountType == "customer" ?
                     <>
                         <Link className="aspect-square border-2 rounded-xl overflow-hidden m-4" to="/profile">
-                            <img src="https://tr.rbxcdn.com/38c6edcb50633730ff4cf39ac8859840/420/420/Hat/Png" className="w-full h-2/3 object-cover" />
+                            <img src="https://github.com/al3xbro/pet-adoption-system/blob/main/assets/Alex%20Bui.jpg?raw=true" className="w-full h-2/3 object-cover" />
                             <div className="h-1/3 w-full bg-gray-200 p-2 text-xl text-center">Alex Bui</div>
                         </Link>
                         <hr className="bg-gray-900 my-2 border-0 h-[1.5px]" />
