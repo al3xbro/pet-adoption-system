@@ -49,7 +49,6 @@ public class PetDAO implements PetDAOInt {
         String sql = "SELECT * " +
                 "FROM pet " +
                 "WHERE pet_name LIKE \'%" + petName + "%\';";
-        System.out.println(sql);
         return jdbcTemplate.query(sql, new PetRowMapper());
     }
 

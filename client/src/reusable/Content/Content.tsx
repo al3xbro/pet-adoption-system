@@ -34,13 +34,14 @@ export default function Content({ contentView, paneView }: Props) {
 
     // FIXME: json data
     const cardFactory = (element: any) => {
+        console.log(element)
         switch (paneView) {
             case "pets":
                 return <Card key={element.id} name={element.name} summary={`${element.sex} - ${element.age > 12 ? `${Math.floor(element.age / 12)}yr` : `${element.age}mo`} - ${element.breed}`} desc={element.desc} img={element.img} />
             case "volunteers":
-                return <Card key={element.id} name={element.name} summary={element.hours} desc={""} img={element.img} />
+                return <Card key={element.id} name={`${element.firstName} ${element.lastName}`} summary={`${element.hoursWorked} hrs`} desc={""} img={element.img} />
             case "customers":
-                return <Card key={element.id} name={element.name} summary={""} desc={`${element.phone} - ${element.address}`} img={element.img} />
+                return <Card key={element.id} name={`${element.firstName} ${element.lastName}`} summary={""} desc={`${element.phone} - ${element.address}`} img={element.img} />
             case "shelters":
                 return <Card key={element.id} name={element.name} summary={`${element.numAdoptions} adoptions`} desc={`${element.phone} - ${element.address}`} img={element.img} />
         }
@@ -51,9 +52,9 @@ export default function Content({ contentView, paneView }: Props) {
             case "pets":
                 return <ListElement key={element.id} name={element.name} summary={`${element.sex} - ${element.age > 12 ? `${Math.floor(element.age / 12)}yr` : `${element.age}mo`} - ${element.breed}`} desc={element.desc} img={element.img} />
             case "volunteers":
-                return <ListElement key={element.id} name={element.name} summary={element.hours} desc={""} img={element.img} />
+                return <ListElement key={element.id} name={`${element.firstName} ${element.lastName}`} summary={`${element.hoursWorked} hrs`} desc={""} img={element.img} />
             case "customers":
-                return <ListElement key={element.id} name={element.name} summary={""} desc={`${element.phone} - ${element.address}`} img={element.img} />
+                return <ListElement key={element.id} name={`${element.firstName} ${element.lastName}`} summary={""} desc={`${element.phone} - ${element.address}`} img={element.img} />
             case "shelters":
                 return <ListElement key={element.id} name={element.name} summary={`${element.numAdoptions} adoptions`} desc={`${element.phone} - ${element.address}`} img={element.img} />
         }
