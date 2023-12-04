@@ -1,9 +1,9 @@
+import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
+import { useEffect } from "react"
+import { useSearchParams } from "react-router-dom"
 import Card from "./Card"
 import ListElement from "./ListElement"
-import { useQuery } from "@tanstack/react-query"
-import { useSearchParams } from "react-router-dom"
-import { useEffect } from "react"
 
 type ContentView = "card" | "list"
 type PaneView = "customers" | "volunteers" | "pets" | "shelters"
@@ -15,23 +15,22 @@ type Props = {
 
 export default function Content({ contentView, paneView }: Props) {
 
-    let [searchParams] = useSearchParams();
-    let name = searchParams.get("q");
+    const [searchParams] = useSearchParams()
 
     // FIXME: endpoint
     const query = useQuery({
-        queryKey: [paneView, name],
+        queryKey: [paneView],
         queryFn: async () => {
-            if (!name) return axios.get(`http://localhost:8080/api/${paneView}`)
-            else return axios.get(`http://localhost:8080/api/${paneView}/name/${name}`)
+            if (!searchParams.get("q")) return axios.get(`http://localhost:8080/api/${paneView}`)
+            else return axios.get(`http://localhost:8080/api/${paneView}/name/${searchParams.get("q")?.toLocaleLowerCase()}`)
         }
     })
-    // EVERYBODY PANIC THERE IS NO TYPE SAFETY AHHHHHHHHHH
 
     useEffect(() => {
-        console.log(searchParams.get("q"))
         query.refetch()
     }, [searchParams])
+
+    // EVERYBODY PANIC THERE IS NO TYPE SAFETY AHHHHHHHHHH
 
     // FIXME: json data
     const cardFactory = (element: any) => {

@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { TfiViewGrid, TfiAlignJustify, TfiSearch, TfiAngleDown } from "react-icons/tfi";
 import { AccountContext } from "../App";
 import throttle from "lodash.throttle";
+import { useSearchParams } from "react-router-dom";
 
 type ContentView = "card" | "list"
 type PaneView = "profile" | "customers" | "volunteers" | "pets" | "shelters" | "none"
@@ -28,14 +29,13 @@ function toggleDropdown(dropdownState: boolean, setDropdownState: React.Dispatch
     });
 }
 
-const throttleQuery = throttle((searchText: string) => {
-    const currentURL = window.location.href
-    const newURL = new URL(currentURL)
-    newURL.searchParams.set("q", searchText)
-    history.pushState({}, "", newURL.toString())
+const throttleQuery = throttle((searchText: string, setSearchParams) => {
+    setSearchParams({ q: searchText })
 }, 500)
 
 export default function Navbar({ paneView, contentView, setContentView }: Props) {
+
+    const [setSearchParams] = useSearchParams()
 
     const accountContext = useContext(AccountContext)
     const accountType = accountContext?.accountType
@@ -46,7 +46,7 @@ export default function Navbar({ paneView, contentView, setContentView }: Props)
     const dropdownRef = useRef(null);
 
     useEffect(() => {
-        throttleQuery(searchText)
+        throttleQuery(searchText, setSearchParams)
     }, [searchText])
 
     useEffect(() => {
