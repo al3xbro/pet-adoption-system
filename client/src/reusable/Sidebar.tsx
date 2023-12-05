@@ -52,7 +52,7 @@ export default function Sidebar() {
                 {accountType == "shelter" ?
                     <>
                         <Link className="aspect-square border-2 rounded-xl overflow-hidden m-4" to="/profile">
-                            <img src="https://tr.rbxcdn.com/38c6edcb50633730ff4cf39ac8859840/420/420/Hat/Png" className="w-full h-2/3 object-cover" />
+                            <img src="https://github.com/al3xbro/pet-adoption-system/blob/main/assets/Gabriel%20Animal%20Shelter.jpg?raw=true" className="w-full h-2/3 object-cover" />
                             <div className="h-1/3 w-full bg-gray-200 p-2 text-xl flex items-center justify-center">
                                 <div className="text-center w-fit h-fit">
                                     Gabriel's Animal Home
