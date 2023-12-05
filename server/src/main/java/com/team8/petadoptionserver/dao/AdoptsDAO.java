@@ -29,7 +29,7 @@ public class AdoptsDAO implements AdoptsDAOInt {
                     pet_name,
                     customer_id,
                     customer_first_name,
-                    customer_id,
+                    volunteer_id,
                     volunteer_first_name,
                     shelter_id,
                     shelter_name
