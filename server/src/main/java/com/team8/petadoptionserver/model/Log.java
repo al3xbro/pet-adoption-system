@@ -18,7 +18,8 @@ public class Log {
     @JsonProperty
     private String shelterName;
 
-    public Log(String petName, String customerName, String volunteerName, String shelterName) {
+    public Log(int logId, String petName, String customerName, String volunteerName, String shelterName) {
+        this.logId = logId;
         this.petName = petName;
         this.customerName = customerName;
         this.volunteerName = volunteerName;
