@@ -24,15 +24,15 @@ public class AdoptsDAO implements AdoptsDAOInt {
     public List<Map<String, Object>> findAll() {
         String sql = """
                 SELECT
-                    adopt_id,
-                    pet_id,
-                    pet_name,
-                    customer_id,
-                    customer_first_name,
-                    volunteer_id,
-                    volunteer_first_name,
-                    shelter_id,
-                    shelter_name
+                    a.adopt_id,
+                    p.pet_id,
+                    p.pet_name,
+                    c.customer_id,
+                    c.customer_first_name,
+                    v.volunteer_id,
+                    v.volunteer_first_name,
+                    s.shelter_id,
+                    s.shelter_name
                 FROM adopts a
                 LEFT JOIN pet p ON a.pet_id = p.pet_id
                 LEFT JOIN customer c ON a.customer_id = c.customer_id
