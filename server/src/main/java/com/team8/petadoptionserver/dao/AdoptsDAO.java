@@ -39,7 +39,7 @@ public class AdoptsDAO implements AdoptsDAOInt {
                 LEFT JOIN volunteer v ON a.volunteer_id = v.volunteer_id
                 LEFT JOIN shelter s ON a.shelter_id = s.shelter_id;
                 """;
-        return jdbcTemplate.queryForList(sql);
+        return jdbcTemplate.queryForList(sql, new LogRowMapper());
     }
 
     @Override
@@ -48,8 +48,16 @@ public class AdoptsDAO implements AdoptsDAOInt {
                 INSERT INTO adopts (pet_id, customer_id, volunteer_id, shelter_id, adopt_date)
                 VALUES (?, ?, ?, ?, CURDATE());
                 """;
-        return jdbcTemplate.update(sql, log.getPetId(), log.getCustomerId(), log.getVolunteerId(),
+        return jdbcTemplate.update(sql, new LogRowMapper(), log.getPetId(), log.getCustomerId(), log.getVolunteerId(),
                 log.getShelterId());
+    }
+
+    @Override
+    public List<Map<String, Object>> getAvailablePets() {
+        String sql = """
+                SELECT * FROM pet WHERE pet_id NOT IN (SELECT pet_id FROM adopts);
+                """;
+        return jdbcTemplate.queryForList(sql, new LogRowMapper());
     }
 
 }

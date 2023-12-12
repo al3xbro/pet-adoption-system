@@ -28,4 +28,9 @@ public class AdoptsController {
     public int addAdoption(@RequestBody Log adoptionData) {
         return adoptsDAO.addAdoption(adoptionData);
     }
+
+    @GetMapping("api/pets")
+    public List<Map<String, Object>> findAvailablePets() {
+        return adoptsDAO.getAvailablePets();
+    }
 }

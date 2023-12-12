@@ -14,4 +14,7 @@ public interface AdoptsDAOInt {
 
     public int addAdoption(Log log);
 
+    List<Map<String, Object>> getAvailablePets();
+    
+
 }
