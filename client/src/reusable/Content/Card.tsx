@@ -9,6 +9,7 @@ type Props = {
     shelterId: number,
     desc: string,
     img: string,
+    isPet: boolean
 }
 
 function canAccess(accountType: string | undefined) {
@@ -17,7 +18,7 @@ function canAccess(accountType: string | undefined) {
     return true
 }
 
-export default function Card({ id, name, summary, shelterId, img }: Props) {
+export default function Card({ id, name, summary, shelterId, img, isPet }: Props) {
 
     const [showAdminDisplay, setShowAdminDisplay] = useState(false)
     const [showAdoptMenu, setShowAdoptMenu] = useState(false)
@@ -27,7 +28,7 @@ export default function Card({ id, name, summary, shelterId, img }: Props) {
         <>
             {showAdoptMenu ? <AdoptForm petId={id} petName={name} shelterId={shelterId} setShowAdoptMenu={setShowAdoptMenu} /> : null}
             <div className="relative rounded-xl h-52 w-full overflow-hidden" onMouseEnter={() => { setShowAdminDisplay(true) }} onMouseLeave={() => { setShowAdminDisplay(false) }}>
-                {canAccess(accountContext?.accountType) ?
+                {canAccess(accountContext?.accountType) && isPet ?
                     <div className={`absolute right-[4%] top-[7%] flex gap-2 transition-opacity ease-in-out duration-100 ${showAdminDisplay ? "opacity-100" : "opacity-0"}`}>
                         <div className="bg-white p-2 rounded-md shadow-xl hover:bg-gray-200 transition ease-in-out duration-100" onClick={() => { setShowAdoptMenu(true) }}>Adopt</div>
                         <div className="bg-red-500 p-2 rounded-md shadow-xl hover:bg-red-400 transition ease-in-out duration-100">Delete</div>

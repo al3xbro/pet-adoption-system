@@ -50,13 +50,13 @@ export default function Content({ contentView, paneView }: Props) {
     const cardFactory = (element: any) => {
         switch (paneView) {
             case "pets":
-                return <Card key={element.id} id={element.id} name={element.name} shelterId={element.shelterId} summary={`${element.sex} - ${element.age > 12 ? `${Math.floor(element.age / 12)}yr` : `${element.age}mo`} - ${element.breed}`} desc={element.desc} img={element.img} />
+                return <Card key={element.id} id={element.id} name={element.name} shelterId={element.shelterId} summary={`${element.sex} - ${element.age > 12 ? `${Math.floor(element.age / 12)}yr` : `${element.age}mo`} - ${element.breed}`} desc={element.desc} img={element.img} isPet={true} />
             case "volunteers":
-                return <Card key={element.id} id={element.id} shelterId={0} name={`${element.firstName} ${element.lastName}`} summary={`${element.hoursWorked} hrs`} desc={""} img={element.img} />
+                return <Card key={element.id} id={element.id} shelterId={0} name={`${element.firstName} ${element.lastName}`} summary={`${element.hoursWorked} hrs`} desc={""} img={element.img} isPet={false} />
             case "customers":
-                return <Card key={element.id} id={element.id} shelterId={0} name={`${element.firstName} ${element.lastName}`} summary={""} desc={`${element.phone} - ${element.address}`} img={element.img} />
+                return <Card key={element.id} id={element.id} shelterId={0} name={`${element.firstName} ${element.lastName}`} summary={""} desc={`${element.phone} - ${element.address}`} img={element.img} isPet={false} />
             case "shelters":
-                return <Card key={element.id} id={element.id} shelterId={0} name={element.name} summary={`${element.numAdoptions} adoptions`} desc={`${element.phone} - ${element.address}`} img={element.img} />
+                return <Card key={element.id} id={element.id} shelterId={0} name={element.name} summary={`${element.numAdoptions} adoptions`} desc={`${element.phone} - ${element.address}`} img={element.img} isPet={false} />
             case "logs":
                 return <ListElement key={element.id} name={element.petName} summary={element.customerName} desc={`by ${element.volunteerName} at ${element.shelterName}`} img="" />
         }

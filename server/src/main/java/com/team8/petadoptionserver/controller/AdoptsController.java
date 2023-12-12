@@ -24,7 +24,6 @@ public class AdoptsController {
 
     @GetMapping({ "", "/" })
     public List<Log> findAll() {
-        System.out.println(adoptsDAO.findAll());
         return adoptsDAO.findAll();
     }
 
