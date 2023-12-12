@@ -29,7 +29,7 @@ public class AdoptsController {
         return adoptsDAO.addAdoption(adoptionData);
     }
 
-    @GetMapping({ "", "/" })
+    @GetMapping("/shelter/{petId}")
     public List<Map<String, Object>> findAvailablePets() {
         return adoptsDAO.getAvailablePets();
     }
