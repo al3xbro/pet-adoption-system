@@ -83,6 +83,13 @@ public class VolunteerDAO implements VolunteerDAOInt {
                 )
                 VALUES (?,?,?);
                 """;
+        String addVolunteer = """
+                INSERT INTO volunteers_at (
+                    volunteer_id,
+                    1
+                )
+                """;
+        jdbcTemplate.update(addVolunteer);
         return jdbcTemplate.update(sql, volunteer.getFirstName(), volunteer.getLastName(), volunteer.getHoursWorked());
     }
 

@@ -3,6 +3,7 @@ import { TfiViewGrid, TfiAlignJustify, TfiSearch, TfiAngleDown } from "react-ico
 import { AccountContext } from "../App";
 import throttle from "lodash.throttle";
 import { useSearchParams } from "react-router-dom";
+import AddVolunteerForm from "../pages/AddVolunteerForm";
 
 type ContentView = "card" | "list"
 type PaneView = "profile" | "customers" | "volunteers" | "pets" | "shelters" | "logs" | "none"
@@ -41,6 +42,7 @@ export default function Navbar({ paneView, contentView, setContentView }: Props)
     const accountType = accountContext?.accountType
     const setAccountType = accountContext?.setAccountType || (() => { })
 
+    const [showAddVolunteerMenu, setShowAddVolunteerMenu] = useState(false)
     const [dropdownState, setDropdownState] = useState(false)
     const [searchText, setSearchText] = useState("")
     const dropdownRef = useRef(null);
@@ -64,6 +66,7 @@ export default function Navbar({ paneView, contentView, setContentView }: Props)
 
     return (
         <>
+            {showAddVolunteerMenu ? <AddVolunteerForm shelterId={1} setShowAddVolunteerMenu={setShowAddVolunteerMenu} /> : null}
             <div className="h-16 w-full flex p-4 justify-between border-b-2 border-b-black">
                 {paneView != "none" && paneView != "profile" ?
                     <>
@@ -80,11 +83,19 @@ export default function Navbar({ paneView, contentView, setContentView }: Props)
                     </>
                     : <div />
                 }
-                <div className={`flex items-center gap-1 px-[0.375rem] rounded-md sm:hover:bg-gray-200 ${dropdownState ? "bg-gray-200" : ""} transition duration-200 ease-in-out`} onClick={() => toggleDropdown(dropdownState, setDropdownState)}>
-                    {accountType == "customer" ? "Customer" : null}
-                    {accountType == "volunteer" ? "Volunteer" : null}
-                    {accountType == "shelter" ? "Shelter" : null}
-                    <TfiAngleDown className="w-3" />
+                <div className="flex gap-2">
+                    {accountType === "shelter" ?
+                        <div className="flex px-[0.375rem] items-center rounded-md sm:hover:bg-gray-200 transition duration-200 ease-in-out" onClick={() => setShowAddVolunteerMenu(true)}>
+                            Add Volunteer
+                        </div>
+                        : null
+                    }
+                    <div className={`flex items-center gap-1 px-[0.375rem] rounded-md sm:hover:bg-gray-200 ${dropdownState ? "bg-gray-200" : ""} transition duration-200 ease-in-out`} onClick={() => toggleDropdown(dropdownState, setDropdownState)}>
+                        {accountType == "customer" ? "Customer" : null}
+                        {accountType == "volunteer" ? "Volunteer" : null}
+                        {accountType == "shelter" ? "Shelter" : null}
+                        <TfiAngleDown className="w-3" />
+                    </div>
                 </div>
             </div>
             {dropdownState ?
