@@ -1,13 +1,12 @@
 package com.team8.petadoptionserver.dao;
 
-import com.team8.petadoptionserver.model.Pet;
-import com.team8.petadoptionserver.model.Shelter;
-
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
+
+import com.team8.petadoptionserver.model.Pet;
+import com.team8.petadoptionserver.model.Shelter;
 
 @Repository
 public interface PetDAOInt {

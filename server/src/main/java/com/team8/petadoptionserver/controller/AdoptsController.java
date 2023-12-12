@@ -1,13 +1,16 @@
 package com.team8.petadoptionserver.controller;
 
-import com.team8.petadoptionserver.dao.AdoptsDAO;
-import com.team8.petadoptionserver.model.Log;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Map;
+import com.team8.petadoptionserver.dao.AdoptsDAO;
+import com.team8.petadoptionserver.model.Log;
 
 @RestController
 @RequestMapping("api/logs")
@@ -20,7 +23,8 @@ public class AdoptsController {
     }
 
     @GetMapping({ "", "/" })
-    public List<Map<String, Object>> findAll() {
+    public List<Log> findAll() {
+        System.out.println(adoptsDAO.findAll());
         return adoptsDAO.findAll();
     }
 

@@ -4,59 +4,70 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Log {
     @JsonProperty
-    private int petId;
+    private int logId;
 
     @JsonProperty
-    private int customerId;
+    private String petName;
 
     @JsonProperty
-    private int volunteerId;
+    private String customerName;
 
     @JsonProperty
-    private int shelterId;
+    private String volunteerName;
 
-    public Log(int petId, int customerId, int volunteerId, int shelterId) {
-        this.petId = petId;
-        this.customerId = customerId;
-        this.volunteerId = volunteerId;
-        this.shelterId = shelterId;
+    @JsonProperty
+    private String shelterName;
+
+    public Log(String petName, String customerName, String volunteerName, String shelterName) {
+        this.petName = petName;
+        this.customerName = customerName;
+        this.volunteerName = volunteerName;
+        this.shelterName = shelterName;
     }
 
-    public int getPetId() {
-        return petId;
+    public int getLogId() {
+        return logId;
     }
 
-    public void setPetId(int petId) {
-        this.petId = petId;
+    public void setLogId(int logId) {
+        this.logId = logId;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public String getPetName() {
+        return petName;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setPetName(String petName) {
+        this.petName = petName;
     }
 
-    public int getVolunteerId() {
-        return volunteerId;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setVolunteerId(int volunteerId) {
-        this.volunteerId = volunteerId;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public int getShelterId() {
-        return shelterId;
+    public String getVolunteerName() {
+        return volunteerName;
     }
 
-    public void setShelterId(int shelterId) {
-        this.shelterId = shelterId;
+    public void setVolunteerName(String volunteerName) {
+        this.volunteerName = volunteerName;
+    }
+
+    public String getShelterName() {
+        return shelterName;
+    }
+
+    public void setShelterName(String shelterName) {
+        this.shelterName = shelterName;
     }
 
     @Override
     public String toString() {
-        return "{" + " petId='" + getPetId() + "'" + ", customerId='" + getCustomerId() + "'" + ", volunteerId='"
-                + getVolunteerId() + "'" + ", shelterId='" + getShelterId() + "'" + "}";
+        return "Log [customerName=" + customerName + ", petName=" + petName + ", shelterName=" + shelterName
+                + ", volunteerName=" + volunteerName + "]";
     }
 }

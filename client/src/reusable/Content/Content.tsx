@@ -58,7 +58,7 @@ export default function Content({ contentView, paneView }: Props) {
             case "shelters":
                 return <Card key={element.id} id={element.id} shelterId={0} name={element.name} summary={`${element.numAdoptions} adoptions`} desc={`${element.phone} - ${element.address}`} img={element.img} />
             case "logs":
-                return <div className="w-full h-10 border-b-[1px] border-gray-400 flex px-2 gap-10">{element}</div>
+                return <ListElement key={element.id} name={element.petName} summary={element.customerName} desc={`by ${element.volunteerName} at ${element.shelterName}`} img="" />
         }
     }
 
@@ -72,6 +72,8 @@ export default function Content({ contentView, paneView }: Props) {
                 return <ListElement key={element.id} name={`${element.firstName} ${element.lastName}`} summary={""} desc={`${element.phone} - ${element.address}`} img={element.img} />
             case "shelters":
                 return <ListElement key={element.id} name={element.name} summary={`${element.numAdoptions} adoptions`} desc={`${element.phone} - ${element.address}`} img={element.img} />
+            case "logs":
+                return <ListElement key={element.id} name={element.petName} summary={element.customerName} desc={`by ${element.volunteerName} at ${element.shelterName}`} img="" />
         }
     }
 
@@ -79,7 +81,7 @@ export default function Content({ contentView, paneView }: Props) {
         <>
             {
                 query.isSuccess ?
-                    contentView == "card" ?
+                    contentView == "card" && paneView != "logs" ?
                         <div style={{ gridTemplateColumns: "repeat(auto-fill, minmax(20rem, 1fr))", gridAutoRows: "13rem" }} className="grid gap-8 h-[calc(100%-4rem)] overflow-y-auto p-6">
                             {query.data?.data.map((element: any) => cardFactory(element))}
                         </div>

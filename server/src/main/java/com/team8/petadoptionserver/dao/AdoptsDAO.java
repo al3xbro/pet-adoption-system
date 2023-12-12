@@ -1,14 +1,13 @@
 package com.team8.petadoptionserver.dao;
 
-import org.springframework.jdbc.core.JdbcTemplate;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.team8.petadoptionserver.model.Log;
 import com.team8.petadoptionserver.model.LogRowMapper;
-
-import java.util.List;
-import java.util.Map;
 
 @Repository
 public class AdoptsDAO implements AdoptsDAOInt {
@@ -21,17 +20,15 @@ public class AdoptsDAO implements AdoptsDAOInt {
     }
 
     @Override
-    public List<Map<String, Object>> findAll() {
+    public List<Log> findAll() {
         String sql = """
                 SELECT
                     a.adopt_id,
-                    p.pet_id,
                     p.pet_name,
-                    c.customer_id,
                     c.customer_first_name,
-                    v.volunteer_id,
+                    c.customer_last_name,
                     v.volunteer_first_name,
-                    s.shelter_id,
+                    v.volunteer_last_name,
                     s.shelter_name
                 FROM adopts a
                 LEFT JOIN pet p ON a.pet_id = p.pet_id
@@ -39,7 +36,7 @@ public class AdoptsDAO implements AdoptsDAOInt {
                 LEFT JOIN volunteer v ON a.volunteer_id = v.volunteer_id
                 LEFT JOIN shelter s ON a.shelter_id = s.shelter_id;
                 """;
-        return jdbcTemplate.queryForList(sql, new LogRowMapper());
+        return jdbcTemplate.query(sql, new LogRowMapper());
     }
 
     @Override
@@ -48,8 +45,9 @@ public class AdoptsDAO implements AdoptsDAOInt {
                 INSERT INTO adopts (pet_id, customer_id, volunteer_id, shelter_id, adopt_date)
                 VALUES (?, ?, ?, ?, CURDATE());
                 """;
-        return jdbcTemplate.update(sql, new LogRowMapper(), log.getPetId(), log.getCustomerId(), log.getVolunteerId(),
-                log.getShelterId());
+        return jdbcTemplate.update(sql, new LogRowMapper(), log.getPetName(), log.getCustomerName(),
+                log.getVolunteerName(),
+                log.getShelterName());
     }
 
 }

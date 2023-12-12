@@ -1,16 +1,15 @@
 package com.team8.petadoptionserver.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.team8.petadoptionserver.model.Log;
 
-import java.util.List;
-import java.util.Map;
-
 @Repository
 public interface AdoptsDAOInt {
 
-    List<Map<String, Object>> findAll();
+    List<Log> findAll();
 
     public int addAdoption(Log log);
 
