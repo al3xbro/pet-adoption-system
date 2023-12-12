@@ -14,7 +14,7 @@ interface VolunteerData {
 }
 
 
-export default function AddVolunteerForm({ shelterId, setShowAddVolunteerMenu }: Props) {
+export default function AddVolunteerForm({ setShowAddVolunteerMenu }: Props) {
 
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -22,7 +22,7 @@ export default function AddVolunteerForm({ shelterId, setShowAddVolunteerMenu }:
 
     const adopt = useMutation({
         mutationFn: async (data: VolunteerData) => {
-            return axios.post("http://localhost:8080/api/volunteers", {
+            return axios.post("http://alexserver.sytes.net:8080/api/volunteers", {
                 firstName: data.firstName,
                 lastName: data.lastName,
                 hoursWorked: 0,

@@ -20,11 +20,11 @@ interface AdoptData {
 
 export default function AdoptForm({ petId, petName, shelterId, setShowAdoptMenu }: Props) {
 
-    const [customerId, setCustomerId] = useState(null)
+    const [customerId, setCustomerId] = useState(1)
 
     const adopt = useMutation({
         mutationFn: async (data: AdoptData) => {
-            return axios.post("http://localhost:8080/api/logs", {
+            return axios.post("http://alexserver.sytes.net:8080/api/logs", {
                 petId: data.petId,
                 customerId: data.customerId,
                 volunteerId: data.volunteerId,
@@ -42,11 +42,11 @@ export default function AdoptForm({ petId, petName, shelterId, setShowAdoptMenu 
     const getCustomers = useQuery({
         queryKey: ["customers"],
         queryFn: async () => {
-            return axios.get("http://localhost:8080/api/customers")
+            return axios.get("http://alexserver.sytes.net:8080/api/customers")
         }
     })
 
-    function adoptPet(petId: number, customerId, volunteerId: number, shelterId: number) {
+    function adoptPet(petId: number, customerId: any, volunteerId: number, shelterId: number) {
         const data = {
             "petId": petId,
             "customerId": customerId.value,
@@ -72,7 +72,7 @@ export default function AdoptForm({ petId, petName, shelterId, setShowAdoptMenu 
                     <div className="text-4xl font-bold">Adopting {petName}</div>
                     <div className="flex flex-col gap-2">
                         <div>Who's adopting?</div>
-                        <Select value={customerId} options={customerOptions} onChange={(choice) => { setCustomerId(choice ?? 0) }} />
+                        <Select value={customerId} options={customerOptions} onChange={(choice) => { setCustomerId(choice ?? 1) }} />
                     </div>
                     <div className="absolute bottom-8 right-10 flex gap-2">
                         <div className="bg-red-500 p-2 w-[85px] text-center rounded-md hover:bg-red-400 transition ease-in-out duration-100" onClick={() => { setShowAdoptMenu(false) }}>Cancel</div>
