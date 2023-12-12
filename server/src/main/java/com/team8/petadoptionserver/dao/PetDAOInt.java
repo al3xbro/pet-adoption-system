@@ -4,6 +4,7 @@ import com.team8.petadoptionserver.model.Pet;
 import com.team8.petadoptionserver.model.Shelter;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
@@ -29,4 +30,6 @@ public interface PetDAOInt {
     int updatePet(int petId, Pet pet);
 
     int deletePet(int petId);
+
+    List<Pet> getAvailablePets(String name);
 }

@@ -3,8 +3,8 @@ package com.team8.petadoptionserver.dao;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.team8.petadoptionserver.model.Pet;
@@ -114,7 +114,8 @@ public class PetDAO implements PetDAOInt {
                 WHERE pet_id = ?;
                 """;
 
-        return jdbcTemplate.update(sql, pet.getName(), pet.getAge(), pet.getSpecies(), pet.getBreed(), pet.getSex(), pet.getId());
+        return jdbcTemplate.update(sql, pet.getName(), pet.getAge(), pet.getSpecies(), pet.getBreed(), pet.getSex(),
+                pet.getId());
     }
 
     @Override
@@ -125,5 +126,14 @@ public class PetDAO implements PetDAOInt {
                 """;
 
         return jdbcTemplate.update(sql, petId);
+    }
+
+    @Override
+    public List<Pet> getAvailablePets(String name) {
+        String sql = "SELECT * FROM pet " +
+                "WHERE pet_id NOT IN (SELECT pet_id FROM adopts) " +
+                "AND pet_name LIKE \'%" + name + "%\'";
+        ;
+        return jdbcTemplate.query(sql, new PetRowMapper());
     }
 }

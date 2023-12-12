@@ -4,7 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.team8.petadoptionserver.dao.PetDAO;
 import com.team8.petadoptionserver.model.Pet;
@@ -79,8 +85,18 @@ public class PetController {
         return petDAO.updatePet(id, pet);
     }
 
-    @GetMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public int deletePet(@PathVariable("id") int id) {
         return petDAO.deletePet(id);
+    }
+
+    @GetMapping("/available/{name}")
+    public List<Pet> findAvailablePets(@PathVariable("name") String name) {
+        return petDAO.getAvailablePets(name);
+    }
+
+    @GetMapping("/available/")
+    public List<Pet> findAvailablePets() {
+        return petDAO.getAvailablePets("");
     }
 }

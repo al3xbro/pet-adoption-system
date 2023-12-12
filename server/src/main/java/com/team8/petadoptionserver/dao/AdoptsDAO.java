@@ -52,12 +52,4 @@ public class AdoptsDAO implements AdoptsDAOInt {
                 log.getShelterId());
     }
 
-    @Override
-    public List<Map<String, Object>> getAvailablePets() {
-        String sql = """
-                SELECT * FROM pet WHERE pet_id NOT IN (SELECT pet_id FROM adopts);
-                """;
-        return jdbcTemplate.queryForList(sql, new LogRowMapper());
-    }
-
 }

@@ -1,4 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
+import { useContext } from "react"
+import { AccountContext } from "../../App"
 import axios from "axios"
 import { useEffect } from "react"
 import { useSearchParams } from "react-router-dom"
@@ -16,19 +18,31 @@ type Props = {
 export default function Content({ contentView, paneView }: Props) {
 
     const [searchParams] = useSearchParams()
+    const accountContext = useContext(AccountContext)
+    const accountType = accountContext?.accountType
 
-    // FIXME: endpoint
-    const query = useQuery({
-        queryKey: [paneView],
-        queryFn: async () => {
-            if (!searchParams.get("q")) return axios.get(`http://localhost:8080/api/${paneView}`)
-            else return axios.get(`http://localhost:8080/api/${paneView}/name/${searchParams.get("q")}`)
-        }
-    })
+    let query: any
+    if (accountType == "customer" && paneView == "pets") {
+        query = useQuery({
+            queryKey: [paneView],
+            queryFn: async () => {
+                if (!searchParams.get("q")) return axios.get(`http://localhost:8080/api/pets/available/`)
+                else return axios.get(`http://localhost:8080/api/pets/available/${searchParams.get("q")}`)
+            }
+        })
+    } else {
+        query = useQuery({
+            queryKey: [paneView],
+            queryFn: async () => {
+                if (!searchParams.get("q")) return axios.get(`http://localhost:8080/api/${paneView}`)
+                else return axios.get(`http://localhost:8080/api/${paneView}/name/${searchParams.get("q")}`)
+            }
+        })
+    }
 
     useEffect(() => {
         query.refetch()
-    }, [searchParams])
+    }, [searchParams, accountType])
 
     // EVERYBODY PANIC THERE IS NO TYPE SAFETY AHHHHHHHHHH
 
