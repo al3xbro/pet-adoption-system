@@ -36,7 +36,8 @@ const throttleQuery = throttle((searchText: string, setSearchParams) => {
 
 export default function Navbar({ paneView, contentView, setContentView }: Props) {
 
-    const [setSearchParams] = useSearchParams()
+    // @ts-ignore
+    const [searchParams, setSearchParams] = useSearchParams()
 
     const accountContext = useContext(AccountContext)
     const accountType = accountContext?.accountType
