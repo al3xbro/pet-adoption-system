@@ -24,7 +24,7 @@ export default function AdoptForm({ petId, petName, shelterId, setShowAdoptMenu 
 
     const adopt = useMutation({
         mutationFn: async (data: AdoptData) => {
-            return axios.post("https://ec2-54-219-76-35.us-west-1.compute.amazonaws.com:8080/api/logs", {
+            return axios.post("http://localhost:8080/api/logs", {
                 petId: data.petId,
                 customerId: data.customerId,
                 volunteerId: data.volunteerId,
@@ -42,7 +42,7 @@ export default function AdoptForm({ petId, petName, shelterId, setShowAdoptMenu 
     const getCustomers = useQuery({
         queryKey: ["customers"],
         queryFn: async () => {
-            return axios.get("https://ec2-54-219-76-35.us-west-1.compute.amazonaws.com:8080/api/customers")
+            return axios.get("http://localhost:8080/api/customers")
         }
     })
 

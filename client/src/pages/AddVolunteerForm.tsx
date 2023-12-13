@@ -22,7 +22,7 @@ export default function AddVolunteerForm({ setShowAddVolunteerMenu }: Props) {
 
     const adopt = useMutation({
         mutationFn: async (data: VolunteerData) => {
-            return axios.post("https://ec2-54-219-76-35.us-west-1.compute.amazonaws.com:8080/api/volunteers", {
+            return axios.post("http://localhost:8080/api/volunteers", {
                 firstName: data.firstName,
                 lastName: data.lastName,
                 hoursWorked: 0,
