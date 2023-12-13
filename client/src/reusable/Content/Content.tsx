@@ -26,16 +26,16 @@ export default function Content({ contentView, paneView }: Props) {
         query = useQuery({
             queryKey: [paneView],
             queryFn: async () => {
-                if (!searchParams.get("q")) return axios.get(`http://alexserver.sytes.net:8080/api/pets/available/`)
-                else return axios.get(`http://alexserver.sytes.net:8080/api/pets/available/${searchParams.get("q")}`)
+                if (!searchParams.get("q")) return axios.get(`https://ec2-54-219-76-35.us-west-1.compute.amazonaws.com:8080/api/pets/available/`)
+                else return axios.get(`https://ec2-54-219-76-35.us-west-1.compute.amazonaws.com:8080/api/pets/available/${searchParams.get("q")}`)
             }
         })
     } else {
         query = useQuery({
             queryKey: [paneView],
             queryFn: async () => {
-                if (!searchParams.get("q")) return axios.get(`http://alexserver.sytes.net:8080/api/${paneView}`)
-                else return axios.get(`http://alexserver.sytes.net:8080/api/${paneView}/name/${searchParams.get("q")}`)
+                if (!searchParams.get("q")) return axios.get(`https://ec2-54-219-76-35.us-west-1.compute.amazonaws.com:8080/api/${paneView}`)
+                else return axios.get(`https://ec2-54-219-76-35.us-west-1.compute.amazonaws.com:8080/api/${paneView}/name/${searchParams.get("q")}`)
             }
         })
     }
