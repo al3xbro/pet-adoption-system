@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.team8</groupId>
-	<artifactId>petaddoptionserver</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>petadoptionserver</artifactId>
+	<version>1.0</version>
 	<name>petaddoptionserver</name>
 	<description>Server for Pet Adoption Service!</description>
 	<properties>
