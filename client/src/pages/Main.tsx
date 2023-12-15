@@ -1,12 +1,12 @@
-import { useState, useContext } from "react"
+import { useContext, useState } from "react"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { AccountContext } from "../App"
+import Content from "../reusable/Content/Content"
 import Navbar from "../reusable/Navbar"
 import Sidebar from "../reusable/Sidebar"
-import Content from "../reusable/Content/Content"
 import CustomerProfile from "./CustomerProfile"
-import VolunteerProfile from "./VolunteerProfile"
 import ShelterProfile from "./ShelterProfile"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import VolunteerProfile from "./VolunteerProfile"
 
 type ContentView = "card" | "list"
 

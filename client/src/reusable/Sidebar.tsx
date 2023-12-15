@@ -1,6 +1,6 @@
 import { useContext } from "react"
-import { AccountContext } from "../App"
 import { Link } from "react-router-dom"
+import { AccountContext } from "../App"
 
 export default function Sidebar() {
 

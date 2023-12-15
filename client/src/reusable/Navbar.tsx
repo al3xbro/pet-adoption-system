@@ -1,10 +1,10 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { TfiViewGrid, TfiAlignJustify, TfiSearch, TfiAngleDown } from "react-icons/tfi";
-import { AccountContext } from "../App";
 import throttle from "lodash.throttle";
+import { useContext, useEffect, useRef, useState } from "react";
+import { TfiAlignJustify, TfiAngleDown, TfiSearch, TfiViewGrid } from "react-icons/tfi";
 import { useSearchParams } from "react-router-dom";
-import AddVolunteerForm from "../pages/AddVolunteerForm";
+import { AccountContext } from "../App";
 import AddPetForm from "../pages/AddPetForm";
+import AddVolunteerForm from "../pages/AddVolunteerForm";
 
 type ContentView = "card" | "list"
 type PaneView = "profile" | "customers" | "volunteers" | "pets" | "shelters" | "logs" | "none"

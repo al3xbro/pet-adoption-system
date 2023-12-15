@@ -1,9 +1,8 @@
 import { useQuery } from "@tanstack/react-query"
-import { useContext } from "react"
-import { AccountContext } from "../../App"
 import axios from "axios"
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
 import { useSearchParams } from "react-router-dom"
+import { AccountContext } from "../../App"
 import Card from "./Card"
 import ListElement from "./ListElement"
 
