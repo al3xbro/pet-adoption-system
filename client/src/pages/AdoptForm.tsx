@@ -72,7 +72,7 @@ export default function AdoptForm({ petId, petName, shelterId, setShowAdoptMenu 
                     <div className="text-4xl font-bold">Adopting {petName}</div>
                     <div className="flex flex-col gap-2">
                         <div>Who's adopting?</div>
-                        <Select value={customerId} options={customerOptions} onChange={(choice) => { setCustomerId(choice ?? 1) }} />
+                        <Select value={customerId} options={customerOptions} onChange={(choice) => setCustomerId(choice ?? 1)} />
                     </div>
                     <div className="absolute bottom-8 right-10 flex gap-2">
                         <div className="bg-red-500 p-2 w-[85px] text-center rounded-md hover:bg-red-400 transition ease-in-out duration-100" onClick={() => { setShowAdoptMenu(false) }}>Cancel</div>

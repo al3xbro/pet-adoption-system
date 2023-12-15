@@ -4,6 +4,7 @@ import { AccountContext } from "../App";
 import throttle from "lodash.throttle";
 import { useSearchParams } from "react-router-dom";
 import AddVolunteerForm from "../pages/AddVolunteerForm";
+import AddPetForm from "../pages/AddPetForm";
 
 type ContentView = "card" | "list"
 type PaneView = "profile" | "customers" | "volunteers" | "pets" | "shelters" | "logs" | "none"
@@ -44,6 +45,7 @@ export default function Navbar({ paneView, contentView, setContentView }: Props)
     const setAccountType = accountContext?.setAccountType || (() => { })
 
     const [showAddVolunteerMenu, setShowAddVolunteerMenu] = useState(false)
+    const [showAddPetMenu, setShowAddPetMenu] = useState(false)
     const [dropdownState, setDropdownState] = useState(false)
     const [searchText, setSearchText] = useState("")
     const dropdownRef = useRef(null);
@@ -68,7 +70,8 @@ export default function Navbar({ paneView, contentView, setContentView }: Props)
     return (
         <>
             {showAddVolunteerMenu ? <AddVolunteerForm shelterId={1} setShowAddVolunteerMenu={setShowAddVolunteerMenu} /> : null}
-            <div className="h-16 w-full flex p-4 justify-between border-b-2 border-b-black">
+            {showAddPetMenu ? <AddPetForm shelterId={1} setShowAddPetMenu={setShowAddPetMenu} /> : null}
+            < div className="h-16 w-full flex p-4 justify-between border-b-2 border-b-black">
                 {paneView != "none" && paneView != "profile" ?
                     <>
                         <div className="flex p-[0.375rem] rounded-md sm:hover:bg-gray-200 active:bg-gray-200 transition duration-200 ease-in-out aspect-square" onClick={() => toggleContentView(contentView, setContentView)}>
@@ -86,9 +89,14 @@ export default function Navbar({ paneView, contentView, setContentView }: Props)
                 }
                 <div className="flex gap-2">
                     {accountType === "shelter" ?
-                        <div className="flex px-[0.375rem] items-center rounded-md sm:hover:bg-gray-200 transition duration-200 ease-in-out" onClick={() => setShowAddVolunteerMenu(true)}>
-                            Add Volunteer
-                        </div>
+                        <>
+                            <div className="flex px-[0.375rem] items-center rounded-md sm:hover:bg-gray-200 transition duration-200 ease-in-out" onClick={() => setShowAddPetMenu(true)}>
+                                Add Pet
+                            </div>
+                            <div className="flex px-[0.375rem] items-center rounded-md sm:hover:bg-gray-200 transition duration-200 ease-in-out" onClick={() => setShowAddVolunteerMenu(true)}>
+                                Add Volunteer
+                            </div>
+                        </>
                         : null
                     }
                     <div className={`flex items-center gap-1 px-[0.375rem] rounded-md sm:hover:bg-gray-200 ${dropdownState ? "bg-gray-200" : ""} transition duration-200 ease-in-out`} onClick={() => toggleDropdown(dropdownState, setDropdownState)}>
@@ -98,13 +106,15 @@ export default function Navbar({ paneView, contentView, setContentView }: Props)
                         <TfiAngleDown className="w-3" />
                     </div>
                 </div>
-            </div>
-            {dropdownState ?
-                <div ref={dropdownRef} className="absolute z-20 top-14 right-4 overflow-hidden bg-gray-200 border rounded-md shadow-xl">
-                    <div className="py-1 px-2 hover:bg-gray-300" onClick={() => setAccountType("customer")}>Customer</div>
-                    <div className="py-1 px-2 hover:bg-gray-300 border-y-[1px] border-gray-400" onClick={() => setAccountType("volunteer")}>Volunteer</div>
-                    <div className="py-1 px-2 hover:bg-gray-300" onClick={() => setAccountType("shelter")}>Shelter</div>
-                </div> : null
+            </div >
+            {
+                dropdownState ?
+                    <div ref={dropdownRef} className="absolute z-20 top-14 right-4 overflow-hidden bg-gray-200 border rounded-md shadow-xl">
+                        < div className="py-1 px-2 hover:bg-gray-300" onClick={() => setAccountType("customer")
+                        }> Customer</div >
+                        <div className="py-1 px-2 hover:bg-gray-300 border-y-[1px] border-gray-400" onClick={() => setAccountType("volunteer")}>Volunteer</div>
+                        <div className="py-1 px-2 hover:bg-gray-300" onClick={() => setAccountType("shelter")}>Shelter</div>
+                    </div > : null
             }
         </>
     )
