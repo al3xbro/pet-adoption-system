@@ -1,3 +1,5 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import axios from "axios"
 import { useContext, useState } from "react"
 import { AccountContext } from "../../App"
 import AdoptForm from "../../pages/AdoptForm"
@@ -20,9 +22,21 @@ function canAccess(accountType: string | undefined) {
 
 export default function Card({ id, name, summary, shelterId, img, isPet }: Props) {
 
+    const queryClient = useQueryClient()
+
     const [showAdminDisplay, setShowAdminDisplay] = useState(false)
     const [showAdoptMenu, setShowAdoptMenu] = useState(false)
     const accountContext = useContext(AccountContext)
+
+    const deletePet = useMutation({
+        mutationFn: async () => {
+            setTimeout(() => {
+                // @ts-ignore
+                queryClient.invalidateQueries(["pets"])
+            }, 100)
+            return axios.post(`http://localhost:8080/api/pets/delete/${id}`)
+        }
+    })
 
     return (
         <>
@@ -30,8 +44,8 @@ export default function Card({ id, name, summary, shelterId, img, isPet }: Props
             <div className="relative rounded-xl h-52 w-full overflow-hidden" onMouseEnter={() => { setShowAdminDisplay(true) }} onMouseLeave={() => { setShowAdminDisplay(false) }}>
                 {canAccess(accountContext?.accountType) && isPet ?
                     <div className={`absolute right-[4%] top-[7%] flex gap-2 transition-opacity ease-in-out duration-100 ${showAdminDisplay ? "opacity-100" : "opacity-0"}`}>
-                        <div className="bg-white p-2 rounded-md shadow-xl hover:bg-gray-200 transition ease-in-out duration-100" onClick={() => { setShowAdoptMenu(true) }}>Adopt</div>
-                        <div className="bg-red-500 p-2 rounded-md shadow-xl hover:bg-red-400 transition ease-in-out duration-100">Delete</div>
+                        <div className="bg-white p-2 rounded-md shadow-xl hover:bg-gray-200 transition ease-in-out duration-100" onClick={() => setShowAdoptMenu(true)}>Adopt</div>
+                        <div className="bg-red-500 p-2 rounded-md shadow-xl hover:bg-red-400 transition ease-in-out duration-100" onClick={() => deletePet.mutate()}>Delete</div>
                     </div>
                     :
                     null

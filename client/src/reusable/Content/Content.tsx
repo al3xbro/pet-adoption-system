@@ -46,7 +46,6 @@ export default function Content({ contentView, paneView }: Props) {
 
     // EVERYBODY PANIC THERE IS NO TYPE SAFETY AHHHHHHHHHH
 
-    // FIXME: json data
     const cardFactory = (element: any) => {
         switch (paneView) {
             case "pets":
